@@ -21,7 +21,6 @@ public class infos {
     @GeneratedValue(strategy=GenerationType.AUTO) 
    private Long idInf;
    private String descInf;
-   private String telInf;
    private String typeInf;
    private byte logo;
   
