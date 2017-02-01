@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>DONATIONS</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body xmlns:th="http://www.thymeleaf.org">
+        
+        <form  th:action="@{/gestion}" >
+        <input type="submit" value="goback"/>
+        </form>  
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>        
+        <form  th:action="@{/makeDonationfilearticle}" >
+        <input type="submit" value="Add Donation"/>
+        </form>  
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <TABLE BORDER="1"> 
+  <CAPTION> list of donations </CAPTION> 
+  <TR> 
+ <TH> Donation file name </TH> 
+ <TH> Donation article </TH> 
+ <TH> Quantity </TH> 
+ <TH> Date </TH> 
+ <TH> Observation </TH> 
+  </TR> 
+  <TR th:each="d : ${dnscall}"  th:inline="text"> 
+ <TD> [[${d.file.fileName}]] </TD> 
+ <TD> [[${d.article.description}]] </TD> 
+ <TD> [[${d.donationQuantity}]] </TD> 
+ <TD> [[${d.donationDate}]] </TD> 
+ <TD> [[${d.observation}]] </TD> 
+ <TD> <a th:href="@{'/deleteDonation?id=' + ${d.idDonation}}">
+      <input type="submit"
+          value="ANNULER" 
+          onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
+  </TR> 
+</TABLE>
+        
+        
+        
+      
+        
+    </body>
+</html>

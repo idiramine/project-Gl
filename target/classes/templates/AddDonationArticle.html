@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ADD DONATION</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body xmlns:th="http://www.thymeleaf.org">
+        
+        <form  th:action="@{/gestionfiles}" >
+        <input type="submit" value="goback"/>
+        </form>  
+        
+        <form th:object="${don}" th:action="@{/addDonation}" method="post">
+        <input type="hidden" name="id" th:value="${file.idFile}" /> 
+        <TABLE BORDER="3"> 
+            
+        <div>. </div>
+        <div>. </div>
+            <CAPTION> Remplir Les Infos Relatives Au Don </CAPTION> 
+   
+                <TR> 
+                    <TD> Qantity  </TD>
+                    <TD> <input type="number" min="1"
+                                th:field="*{donationQuantity}"  />  </TD> 
+                </TR>
+                <TR> 
+                    <TD> Date  </TD> 
+                    <TD> <input type="date"  
+                                th:field="*{donationDate}"  />  </TD> 
+                </TR>
+                <TR> 
+                    <TD> Observation  </TD> 
+                    <TD> <input type="text" th:field="*{observation}"  />  </TD> 
+                </TR>
+                <TR> 
+                    <TD> Code Article  </TD> 
+                    <TD> <!--input type="number" name="idart"  /-->  
+                        <FORM>
+                            <SELECT name="idart">
+                            <OPTION th:each="al : ${articles}"  th:inline="text">
+                              [[${al.idArticle}]]   </OPTION>
+                            </SELECT>
+                        </FORM>
+                    </TD> 
+                </TR>
+        </TABLE>
+        <div>. </div>
+                <input type="submit" value="Confirmer"/>
+        </form> 
+        <div>. </div>
+        <div>. </div>
+        <div>. </div>
+       
+        <TABLE BORDER="3"> 
+            <CAPTION> Liste des Articles Disponibles </CAPTION>
+                <TR> 
+                    <TH> Code Article  </TH>
+                    <TH> Nom de l'Article   </TH> 
+                    <TH> Quantité Restante   </TH> 
+                </TR>
+                <TR th:each="al : ${articles}"  th:inline="text"> 
+                    <TD> [[${al.idArticle}]]  </TD> 
+                    <TD> [[${al.description}]]  </TD> 
+                    <TD> [[${al.quantity}]]   </TD> 
+                </TR>
+        </TABLE>
+    </body>
+</html>
