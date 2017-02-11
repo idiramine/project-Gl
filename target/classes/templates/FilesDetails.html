@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Files</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body xmlns:th="http://www.thymeleaf.org">
+        <form  th:action="@{/gestionfiles}" >
+        <input type="submit" value="goback"/>
+        </form>  
+        <div style='background-color: yellow'>***********************************</div>
+        <div style='background-color: yellow'>**********  The File  **********</div>
+        <div style='background-color: yellow'>***********************************</div>
+        <div   th:inline="text"> 
+            <div>    File Name= [[${file.fileName}]]   </div>
+            <div>    File Name= [[${file.fileDate}]]   </div>
+            <div>    File Name= [[${file.adress}]]   </div>
+            <div>    File Name= [[${file.observation}]]   </div>
+        </div>
+        
+        <div style='background-color: blue'>***********************************</div>
+        <div style='background-color: blue'>**********  Beneficiary  **********</div>
+        <div style='background-color: blue'>***********************************</div>
+        <div th:each="b : ${file.beneficiary}" th:inline="text" >
+            
+            <div>    Beneficiary Name=  [[${b.beneficiaryName}]]  </div>
+            <div>    Beneficiary First Name=  [[${b.beneficiaryFirstName}]]  </div>
+            <div>    Beneficiary Date Of Birth=  [[${b.beneficiaryDateOfBirth}]]  </div>
+            <div>    Beneficiary Place Of Birth=  [[${b.beneficiaryPlaceOfBirth}]]  </div>
+            <div>    Beneficiary Situation=  [[${b.beneficiarySituation}]]  </div>
+            <div>    Beneficiary observation=  [[${b.observation}]]  </div>
+        </div>  
+        <form>
+        <!--input type="submit" value="Add Benfeciary" th:action="@{/AddBeneficiary}" /-->
+        <!--input type="submit" value="Delete Benfeciary"/-->
+            <a th:href="@{'/addBeneficiaries?id=' + ${file.idFile}}">(ADD BENEFICIARY)</a>
+            <a th:href="@{'/deleteBeneficiary?id=' + ${file.idFile}}"
+               onclick="return confirm('Are you sure of your choice ?')">(DELETE BENEFICIARY)</a>
+                
+                <!--input type="submit" 
+          value="DELETE BENEFICIARY" /></a-->
+            
+          <!--onclick="return confirm('Are you sure of your choice ?')"-->
+        </form> 
+        
+        
+        <div style='background-color: orange'>***********************************</div>
+        <div style='background-color: orange'>**********  Compagnon  **********</div>
+        <div style='background-color: orange'>***********************************</div>
+        <div th:each="c : ${file.compagnon}" th:inline="text">
+                
+            <div>    Compagnon Name=  [[${c.compagnonName}]]  </div>
+            <div>    Compagnon First Name=  [[${c.compagnonFirstName}]]  </div>
+            <div>    Compagnon Date Of Birth=  [[${c.compagnonDateOfBirth}]]  </div>
+            <div>    Compagnon Place Of Birth=  [[${c.compagnonPlaceOfBirth}]]  </div>
+            <div>    Compagnon observation=  [[${c.observation}]]  </div>          
+        </div> 
+        <form>
+        <!--input type="submit" value="Add Compagnon" th:action="@{/AddBeneficiary}" /-->
+        <!--input type="submit" value="Delete Compagnon"/-->
+            <a th:href="@{'/addCompagnons?id=' + ${file.idFile}}">(ADD COMPAGNON)</a>
+            <a th:href="@{'/deleteCompagnon?id=' + ${file.idFile}}" 
+          onclick="return confirm('Are you sure of your choice ?')">(DELETE COMPAGNON)</a>
+        </form> 
+        
+        
+        
+        <div style='background-color: greenyellow'>***********************************</div>
+        <div style='background-color: greenyellow'>**********  Childrens  **********</div>
+        <div style='background-color: greenyellow'>***********************************</div>
+        <TABLE BORDER="1"> 
+  <CAPTION> list of Childrens </CAPTION> 
+  <TR> 
+ <TH> Name </TH> 
+ <TH> First Name </TH> 
+ <TH> Date Of Birth </TH> 
+ <TH> Place Of Birth </TH> 
+ <TH> Schooling </TH> 
+ <TH> Observation </TH> 
+ <TH> Delete </TH> 
+  </TR> 
+  <TR th:each="ch : ${file.childrens}"  th:inline="text"> 
+ <TD> [[${ch.childrenName}]] </TD> 
+ <TD> [[${ch.childrenFirstName}]] </TD> 
+ <TD> [[${ch.childrenDateOfBirth}]] </TD> 
+ <TD> [[${ch.childrenPlaceOfBirth}]] </TD> 
+ <TD> [[${ch.childrenSchooling}]] </TD> 
+ <TD> [[${ch.observation}]] </TD> 
+ <TD> <a th:href="@{'/deleteChild'(id=  ${file.idFile} , idch= ${ch.idChildren})}">
+      <input type="submit"
+          value="DEL" 
+          onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
+  </TR> 
+</TABLE>
+        
+        
+      
+        <form   th:object="${child}" th:action="@{/addChild}" method="post">
+        <input type="hidden" name="id" th:value="${file.idFile}" />
+        <div> children Name     <input type="text" th:field="*{childrenName}"  />    </div> 
+        <div> children First Name     <input type="text" th:field="*{childrenFirstName}"  />    </div> 
+        <div> children Date Of Birth     <input type="date" th:field="*{childrenDateOfBirth}"  />    </div>
+        <div> children Place Of Birth     <input type="text" th:field="*{childrenPlaceOfBirth}"  />    </div>
+        <div> children Schooling       <input type="text" th:field="*{childrenSchooling}"  />      </div>
+        <div> Observation  <input type="text" th:field="*{observation}"  /> </div>
+       <input type="submit" value="ADD"/>
+       </form> 
+        <div style='background-color: pink'>***********************************</div>
+        <div style='background-color: pink'>********** Donations  **********</div>
+        <div style='background-color: pink'>***********************************</div>
+         <TABLE BORDER="1"> 
+  <CAPTION> list of donations </CAPTION> 
+  <TR> 
+ <TH> Donation file name </TH> 
+ <TH> Donation article </TH> 
+ <TH> Quantity </TH> 
+ <TH> Date </TH> 
+ <TH> Observation </TH> 
+  </TR> 
+  <TR th:each="d : ${dons}"  th:inline="text"> 
+ <TD> [[${d.file.fileName}]] </TD> 
+ <TD> [[${d.article.description}]] </TD> 
+ <TD> [[${d.donationQuantity}]] </TD> 
+ <TD> [[${d.donationDate}]] </TD> 
+ <TD> [[${d.observation}]] </TD> 
+ <TD> <a th:href="@{'/deleteDonationFile?id=' + ${d.idDonation}}">
+      <input type="submit"
+          value="ANNULER" 
+          onclick="return confirm('Are you sure of your choice ?')"/> </a>  </TD> 
+  </TR> 
+</TABLE>
+        
+        
+        
+    </body>
+</html>
