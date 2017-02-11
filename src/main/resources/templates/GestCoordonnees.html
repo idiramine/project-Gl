@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body class="container">
+
+      <!--nav class="navbar navbar-inverse"-->
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">AAPA</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li><a th:href="@{/ListPub}">Publications</a></li>
+              <li class="active"><a th:href="@{/GestCoor}">Coordonnées</a></li>
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+        <div class="panel panel-default">
+           <!-- Default panel contents -->
+           <div class="panel-heading">COORDONNEES</div>
+
+           <!-- Table -->
+           <table class="table table-hover" >
+                   <thead>
+                   <tr>
+                       <th>Description</th>
+                       <th>Rib</th>
+                       <th>Telephone</th>
+                       <th>Adresse</th>
+                       <th>Fax</th>
+                       <th>Modifier</th>
+
+                   </tr>
+                   </thead>
+
+                   <tbody>
+                   <tr th:each="infoo : ${ infAff }">
+
+                       <td th:hidden="${infoo.idInf}"></td>
+
+                       <td th:text="${infoo.descInf}"></td>
+                       <td th:text="${infoo.ribInf}"></td>
+                       <td th:text="${infoo.telInf}"></td>
+                       <td th:text="${infoo.adresseInf}"></td>
+                       <td th:text="${infoo.faxInf}"></td>
+                       <td>
+
+                       </td>
+
+
+                       <td>
+                       <img class="img-circle" th:src="@{getLogo(idLog=${infoo.idInf})}" width="100" height="100" />
+                       </td>
+
+                       <!--td><img th:src="System.getProperty("user.home")+"/aapa/"+"${pubb.photoPub}" /></td-->
+                       <td><a th:href="@{'/editInfos?id='+ ${infoo.idInf}}"><button type="submit" class="btn btn-success">Modif</button></a></td >
+                   </tr>
+                   </tbody>
+               </table>
+
+
+            </div>
+
+            <div class="panel panel-default">
+               <!-- Default panel contents -->
+               <div class="panel-heading">STAFF</div>
+
+               <!-- Table -->
+               <table class="table table-hover" >
+                       <thead>
+                       <tr>
+                           <th>Nom</th>
+                           <th>Prenom</th>
+                           <th>Telephone</th>
+                           <th>Mail</th>
+                           <th>Fonction</th>
+
+                           <th>Modifier</th>
+
+                       </tr>
+                       </thead>
+
+                       <tbody>
+                       <tr th:each="coord : ${ coorAff }">
+
+                           <td th:hidden="${coord.idCoor}"></td>
+
+                           <td th:text="${coord.nomCoor}"></td>
+                           <td th:text="${coord.prenomCoor}"></td>
+                           <td th:text="${coord.telCoor}"></td>
+                           <td th:text="${coord.mailCoor}"></td>
+                           <td th:text="${coord.fonctionCoor}"></td>
+
+                           <!--td><img th:src="System.getProperty("user.home")+"/aapa/"+"${pubb.photoPub}" /></td-->
+                           <td><a th:href="@{'/editCoord?id='+ ${coord.idCoor}}"><button type="submit" class="btn btn-success">Modifier</button></a></td >
+                           <td><a onclick="return confirm('Etes vous sur de vouloir supprimer cet élément ?')" th:href="@{'/DeleteCoor?id='+ ${coord.idCoor}}"><button type="submit" class="btn btn-danger">Supprimer</button></a></td>
+
+                       </tr>
+                   </tbody>
+               </table>
+           </div>
+           <a th:href="@{/addCoord}"><button type="submit" class="btn btn-success">Ajouter un nouveau Membre</button></a>
+
+  </body>
+
+
+
+  </html>

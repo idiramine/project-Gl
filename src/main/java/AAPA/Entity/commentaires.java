@@ -28,5 +28,56 @@ public class commentaires {
       @ManyToOne
     @JoinColumn(name="idThemeEvent")
     private pubblications pubComm;
+
+    public Long getIdComment() {
+        return idComment;
+    }
+
+    public void setIdComment(Long idComment) {
+        this.idComment = idComment;
+    }
+
+    public String getTextComment() {
+        return textComment;
+    }
+
+    public void setTextComment(String textComment) {
+        this.textComment = textComment;
+    }
+
+    public Date getDateComment() {
+        return dateComment;
+    }
+
+    public void setDateComment(Date dateComment) {
+        this.dateComment = dateComment;
+    }
+
+    public String getAuthorComment() {
+        return authorComment;
+    }
+
+    public void setAuthorComment(String authorComment) {
+        this.authorComment = authorComment;
+    }
+
+    public pubblications getPubComm() {
+        return pubComm;
+    }
+
+    public void setPubComm(pubblications pubComm) {
+        this.pubComm = pubComm;
+    }
+
+    public commentaires() {
+    }
+
+    public commentaires(String textComment, Date dateComment, String authorComment, pubblications pubComm) {
+        this.textComment = textComment;
+        this.dateComment = dateComment;
+        this.authorComment = authorComment;
+        this.pubComm = pubComm;
+    }
      
+      
 }

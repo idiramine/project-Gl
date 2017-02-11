@@ -9,8 +9,34 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="/Css/style.css" />
     </head>
     <body>
-        <div>TODO write content</div>
+
+       <H2>Questions: </H2>
+               <ul>
+                   <li th:each="questionn : ${ questionss }" th:inline="text">
+                       <span> [[${questionn.authorQuestion}]]  </span> 
+                       <span>  a posé la question :</span>
+                       <span>  [[${questionn.textQuestion}]]  </span> 
+                       
+                       <input type="text" id="email"/>
+                       <input type="textArea" id="bodiy"/>
+                       <button onclick="myFunction()">ENVOYER</button>
+
+    <p id="demo"></p>
+
+    <script>
+      function myFunction() {
+        var input = document.getElementById('email');
+        email = input.value;
+        var input = document.getElementById('bodiy');
+        
+        bodiy = input.value;
+
+         window.location.href = "mailto:" + email +"?body= " + bodiy;      }
+    </script>
+                   </li> 
+               </ul>
     </body>
 </html>
