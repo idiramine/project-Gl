@@ -355,6 +355,18 @@ public class GIController {
     public String donations (Model m){
         List<Donations> dns=ds.findAll();
         m.addAttribute("dnscall",dns);
+        List <Articles> articles=as.findAll();//filtrer ceux qui ont zero
+       List <Files> files=fs.findAllByOrderByfileNameAsc();//filtrer ceux qui ont zero
+       int i=0;
+       while(i<articles.size()){
+           if(articles.get(i).getQuantity()==0){ 
+              articles.remove(i);
+           }else i++;//System.out.println(""+articles.get(i).getQuantity());
+       }
+       Donations don=new Donations();
+        m.addAttribute("files",files);
+        m.addAttribute("articles",articles);
+        m.addAttribute("don",don);
    return ("Donations"); 
     }
     
@@ -430,9 +442,9 @@ public class GIController {
        ds.save(don);
       }
        }catch (Exception e){
-      
+       
       }
-   return "redirect:/gestionfiles"; 
+   return "redirect:/Seedonations"; 
     }
     
     @RequestMapping("/deleteDonation")

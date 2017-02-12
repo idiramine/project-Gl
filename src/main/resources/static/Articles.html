@@ -13,11 +13,47 @@ and open the template in the editor.
         <script src="lib/react-dom.js">  </script>
         <script src="lib/babel-browser.js">  </script>
         <script src="lib/superagent.js">  </script>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
         
     
     </head>
-    <body>
-        <div> kjdkjghdkjfgk</div>
+    <body xmlns:th="http://www.thymeleaf.org" class="container">
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">AAPA</a>
+      </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+            <li class="active"><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
+              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+        
+        
+        
+        
         <div id="iddiv">mon div test </div>
         
      <!--   <script >  

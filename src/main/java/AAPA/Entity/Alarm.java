@@ -22,7 +22,7 @@ public class Alarm {
     @GeneratedValue (strategy = GenerationType.AUTO)      
     public Long     idAlarm;
     public String title;   
-    public String periodicite;//journalier, mensuel, hebdomadaire, aucune
+    public String periodicite;//Quotidien, Mensuel, Hebdomadaire, Aucune
     public String dateDebut;
     boolean traité;
     public String dateDernierTraitement;

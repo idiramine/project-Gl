@@ -9,30 +9,142 @@ and open the template in the editor.
         <title>DONATIONS</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
-    <body xmlns:th="http://www.thymeleaf.org">
+    <body xmlns:th="http://www.thymeleaf.org" class="container">
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">AAPA</a>
+      </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+            <li class="active"><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
+              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
         
-        <form  th:action="@{/gestion}" >
-        <input type="submit" value="goback"/>
-        </form>  
-        <div>.</div>
-        <div>.</div>
-        <div>.</div>        
-        <form  th:action="@{/makeDonationfilearticle}" >
-        <input type="submit" value="Add Donation"/>
-        </form>  
-        <div>.</div>
-        <div>.</div>
-        <div>.</div>
-        <TABLE BORDER="1"> 
-  <CAPTION> list of donations </CAPTION> 
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Ajoutter Un Don</h3>
+  </div>
+  <div class="panel-body">
+        <form th:object="${don}" th:action="@{/addDonationfilearticle}" method="post">
+         <TABLE class="table table-hover"> 
+   
+                <TR> 
+                    <TD> Qantity  </TD>
+                    <TD> <input type="number" min="1"
+                                th:field="*{donationQuantity}"  />  </TD> 
+                </TR>
+                <TR> 
+                    <TD> Date  </TD> 
+                    <TD> <input type="date"  
+                                th:field="*{donationDate}"  />  </TD> 
+                </TR>
+                <TR> 
+                    <TD> Observation  </TD> 
+                    <TD> <input type="text" th:field="*{observation}"  />  </TD> 
+                </TR>
+                <TR> 
+                    <TD> Code Article  </TD> 
+                    <TD>
+                            <SELECT name="idart">
+                            <OPTION th:each="al : ${articles}"  th:inline="text">
+                              [[${al.idArticle}]]   </OPTION>
+                            </SELECT>
+                        
+                    </TD> 
+                </TR> 
+                <TR> 
+                    <TD> Code Dossier  </TD> 
+                    <TD> 
+                            <SELECT name="id">
+                            <OPTION th:each="f : ${files}" th:value="${f.idFile}" th:inline="text">
+                              [[${f.idFile}]]   </OPTION>
+                            </SELECT>
+                        
+                    </TD> 
+                </TR>
+        </TABLE>
+                <input type="submit" class="btn btn-success" value="Confirmer"/>
+        </form> 
+  
+        <TABLE border="2" class="table table-hover"> 
+            <TR> 
+                    <TH class="panel-heading"> Liste des Articles Disponibles  </TH>
+                    <TH class="panel-heading"> Liste des Dossiers   </TH> 
+            </TR>
+            <TR> 
+                <TD align="center" valign="top">
+        <TABLE class="table table-hover"> 
+                <TR> 
+                    <TH> Code Article  </TH>
+                    <TH> Nom de l'Article   </TH> 
+                    <TH> Quantité Restante   </TH> 
+                </TR>
+                <TR th:each="al : ${articles}"  th:inline="text"> 
+                    <TD > [[${al.idArticle}]]  </TD> 
+                    <TD > [[${al.description}]]  </TD> 
+                    <TD > [[${al.quantity}]]   </TD> 
+                </TR>
+        </TABLE>
+                </TD>
+                <TD>
+                    <TABLE class="table table-hover">
+                <TR> 
+                    <TH> Code Dossier  </TH>
+                    <TH> Nom du Dossier   </TH> 
+                </TR>
+                <TR th:each="f : ${files}"  th:inline="text"> 
+                    <TD> [[${f.idFile}]]  </TD> 
+                    <TD> [[${f.fileName}]]  </TD> 
+                </TR>
+        </TABLE>
+                </TD>
+            </TR>
+        </TABLE>
+             
+        
+        </div></div>
+        
+        
+        
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Les Dons</h3>
+  </div>
+  <div class="panel-body"> 
+        <TABLE class="table table-hover"> 
+            <thead>
   <TR> 
  <TH> Donation file name </TH> 
  <TH> Donation article </TH> 
  <TH> Quantity </TH> 
  <TH> Date </TH> 
  <TH> Observation </TH> 
-  </TR> 
+  </TR> </thead>
   <TR th:each="d : ${dnscall}"  th:inline="text"> 
  <TD> [[${d.file.fileName}]] </TD> 
  <TD> [[${d.article.description}]] </TD> 
@@ -41,10 +153,10 @@ and open the template in the editor.
  <TD> [[${d.observation}]] </TD> 
  <TD> <a th:href="@{'/deleteDonation?id=' + ${d.idDonation}}">
       <input type="submit"
-          value="ANNULER" 
+          value="ANNULER" class="btn btn-danger"
           onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
   </TR> 
-</TABLE>
+        </TABLE></div></div>
         
         
         

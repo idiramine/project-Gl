@@ -9,64 +9,102 @@ and open the template in the editor.
         <title>GESTIONS DES FICHIERS</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="../GestionFiles.css"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
-    <body>
-        <form>
-        <input type="submit" value="Add files" onclick="document.getElementById('id01').style.display='block'"/>
-        </form>  
-        
+    <body class="container">
+       
+         <!--nav class="navbar navbar-inverse"-->
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
 
-        <div id="id01" class="modal">
-  
-            <form class="modal-condtent animate" action="" />
-             <div class="imgcontainer">
-               <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-             </div>
-             <h2>complete the fields bellow and click on add</h2>
-
-      <div class="ee">********************************************************</div>
-      <div> 
-        <h2>Informations about the file</h2>
+        <a class="navbar-brand" href="#">AAPA</a>
         </div>
-      <div class="ee">********************************************************</div>
-      
-        <form  th:object="${file}" th:action="@{/addfiles}" method="post">
-        <div> File Name     <input class="ee" type="text" th:field="*{fileName}"  placeholder="Entrer un nom du dossier"  />    </div> 
-        <div> File Date     <input type="date" th:field="*{fileDate}" placeholder="Entrer une date " />    </div>
-        <div> Adress       <input type="text" th:field="*{adress}" placeholder="Entrer une date "  />      </div>
-        <div> Observation  <input type="text" th:field="*{observation}"  /> </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+            <li class="active"><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
+              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
         
-        <div class="ee">********************************************************</div>
-       <form  th:field="*{beneficiary}" th:object="${benef}" th:action="@{/addfiles}" method="post">
-        <div> beneficiary Name     <input type="text" th:field="*{beneficiaryName}"  />    </div> 
-        <div> beneficiary First Name     <input type="text" th:field="*{beneficiaryFirstName}"  />    </div> 
-        <div> beneficiary Date Of Birth     <input type="date" th:field="*{beneficiaryDateOfBirth}"  />    </div>
-        <div> beneficiary Place Of Birth     <input type="text" th:field="*{beneficiaryPlaceOfBirth}"  />    </div>
-        <div> beneficiary Situation       <input type="text" th:field="*{beneficiarySituation}"  />      </div>
-        <div> Observation  <input type="text" th:field="*{observation}"  /> </div>
-       <input type="submit" value="ADD"/>
-       </form> 
     
-            </form>
-      </div>
-      <TABLE BORDER="1"> 
-          <CAPTION class="yo"> LIST OF FILES </CAPTION> 
+            
+        <div class="panel panel-default">
+            <div class="panel-heading">Dossiers</div>
+      <TABLE  class="table table-hover" > 
+          <thead>
            <TR> 
               <TH> Nom du Dossier </TH> 
               <TH> Voir Plus De Details </TH> 
               <TH> Supprimer </TH> 
               <TH> Faire Un Don </TH> 
           </TR> 
+          </thead>
+          <tbody>
           <TR th:each="f : ${filescall}"  th:inline="text"> 
               <TD> [[${f.fileName}]]  </TD> 
               <TD> <a th:href="@{'/seefiles/' + ${f.idFile}}">(See)</a> </TD> 
               <TD> <a th:href="@{'/del-file?id=' + ${f.idFile}}">
-                <input type="submit" value="Del" onclick="return confirm('Supprimer ce dossier supprimera le benificiare ainsi que le conjoit et les enfants, \n\  cela supprimera aussi les dons concernant ce dossier.\n\ \n\ êtes vous sur de vouloir continuer?')"/>
+                <input type="submit" class="btn btn-danger" value="Del" onclick="return confirm('Supprimer ce dossier supprimera le benificiare ainsi que le conjoit et les enfants, \n\  cela supprimera aussi les dons concernant ce dossier.\n\ \n\ êtes vous sur de vouloir continuer?')"/>
                     </a> </TD> 
               <TD> <a th:href="@{'/makeDonation?id=' + ${f.idFile}}">(don)</a> </TD> 
           </TR>
+          </tbody>
         </TABLE>
+            </div>
+            
+            
+            
+            
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"> Ajouter un nouveau Dossier</h3>
+  </div>
+  <div class="panel-body">
+        <form enctype="multipart/form-data"  th:object="${file}" th:action="@{/addfiles}" method="post">
+            <div class="form-group" >
+            <div> File Name     <input class="form-control" type="text" th:field="*{fileName}"  placeholder="Entrer un nom du dossier"  />    </div> 
+        <div> File Date     <input class="form-control" type="date" th:field="*{fileDate}" placeholder="Entrer une date " />    </div>
+        <div> Adress       <input class="form-control" type="text" th:field="*{adress}" placeholder="Entrer une date "  />      </div>
+        <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
+        
+        <div >********************************************************</div>
+       <form  th:field="*{beneficiary}" th:object="${benef}" th:action="@{/addfiles}" method="post">
+        <div> beneficiary Name     <input class="form-control" type="text" th:field="*{beneficiaryName}"  />    </div> 
+        <div> beneficiary First Name     <input class="form-control" type="text" th:field="*{beneficiaryFirstName}"  />    </div> 
+        <div> beneficiary Date Of Birth     <input class="form-control" type="date" th:field="*{beneficiaryDateOfBirth}"  />    </div>
+        <div> beneficiary Place Of Birth     <input class="form-control" type="text" th:field="*{beneficiaryPlaceOfBirth}"  />    </div>
+        <div> beneficiary Situation       <input class="form-control" type="text" th:field="*{beneficiarySituation}"  />      </div>
+        <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
+       <input type="submit" value="ADD"/>
+       </form> 
+            </div>
+       </form> 
+      </div>
+
+  </div>
     </body>
 </html>
 
