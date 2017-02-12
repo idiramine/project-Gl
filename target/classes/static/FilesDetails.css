@@ -1,0 +1,211 @@
+body {
+    background-color: lightblue;
+}
+
+h2, .ee {
+  color:  #4c69af;
+  margin: 1%;
+   text-align: center;
+}
+
+ .middle {
+    
+  font-family: "Times New Roman", Times, serif;
+  font-size: 120%;
+  color: green;
+  margin: 1%;
+  text-align: center;
+
+
+}
+
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+.container {
+    padding: 16px;
+}
+
+.container-fluid{
+  padding:0;
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* The Modal (background) */
+
+
+.dis{
+    pointer-events:none;
+}
+
+.modal1 {
+  
+  display: none;      
+position: fixed;               
+top: 0; right:0; bottom:0; left: 0;
+background-color: rgba(255, 255, 255, 0.7);
+z-index : 1000;
+}
+
+
+
+
+.modal2 {
+    
+display: none;    
+position: fixed;               
+top: 0; right:0; bottom:0; left: 0;
+background-color: rgba(255, 255, 255, 0.7);
+z-index : 1000;
+}
+
+
+.modal4 {
+    /*display: none;*/  display: none;   
+position: fixed;               
+top: 0; right:0; bottom:0; left: 0;
+background-color: rgba(255, 255, 255, 0.7);
+z-index : 1000;
+}
+
+
+.modal5 {display: none; 
+    /*display: none;*/    
+position: fixed;               
+top: 0; right:0; bottom:0; left: 0;
+background-color: rgba(255, 255, 255, 0.7);
+z-index : 1000;
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+button {
+    background-color: #4c69af;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+.cancelbtn {
+       width: 100%;
+    }
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+.cancelbtn2 {
+    color: white;
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+input {
+  marging-bottom: 20px;
+  
+
+}
+
+input [type=text] {
+  height: 60px;
+  width: 500px;
+  border: none;
+
+}
+input [type=date] {
+  height: 60px;
+  width: 500px;
+  border: none;
+
+}
+
+input [type=email] {
+  height: 60px;
+  width: 500px;
+  border: none;
+
+}
+
+textarea {
+  width: 500px;
+  height: 200px;
+  resize: horizontal;
+}
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height:22px;
+
+}
+
+
+
+
+

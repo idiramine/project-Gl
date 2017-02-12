@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>GESTION</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body xmlns:th="http://www.thymeleaf.org">
+        
+         
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>        
+        
+        <div>.</div>
+        <div>.</div>
+        <div>.</div>
+        <TABLE BORDER="1"  class ="middle"> 
+  <CAPTION> Liste des Alarmes </CAPTION> 
+  <TR> 
+ <TH> Titre </TH> 
+ <TH> Periodicité </TH> 
+ <TH> Date De Debut </TH> 
+ <TH> Date Dernier Traitement </TH> 
+ <TH> Traiter </TH> 
+  </TR> 
+  <TR th:each="d : ${alarms}"  th:inline="text"> 
+ <TD> [[${d.title}]] </TD> 
+ <TD> [[${d.periodicite}]] </TD> 
+ <TD> [[${d.dateDebut}]] </TD> 
+ <TD> [[${d.dateDernierTraitement}]] </TD> 
+ <TD> <a th:href="@{'/traiterAlarm?idal=' + ${d.idAlarm}}">
+      <input type="button"
+          value="Traiter" /> </a> </TD>
+  </TR> 
+</TABLE> 
+        
+        
+        
+      
+        
+    </body>
+</html>

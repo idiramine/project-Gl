@@ -1,0 +1,382 @@
+@@charset "UTF-8";
+
+/* font-family: 'Raleway', sans-serif; */
+/* bleu clair--#1485CC*/
+/* gris--#a3a3a3*/
+
+body, html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: font-family: 'Raleway', sans-serif;
+}
+
+a, a:hover{
+  text-decoration: none;
+}
+
+.container-fluid{
+  padding:0;
+}
+
+.btn-custom{
+  background-color: #1485CC;
+  color: #ffffff;
+}
+
+.separator {
+  height: 3px;
+  width: 100px;
+  border: none;
+  box-shadow: none;
+  background-color: #1485CC;
+}
+
+/* header */
+.header{
+  background-color: #1485CC;
+  height: 70px;
+  line-height: 70px;
+
+}
+
+.logo{
+  color: #ffffff;
+  text-transform: uppercase;
+  padding-left: 5px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  float: left;
+}
+
+.golo{
+  color: #ffffff;
+  text-transform: uppercase;
+  padding-left: 450px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  float: center;
+}
+
+.don{
+  background-color: #1485CC;
+  height: 70px;
+  line-height: 70px;
+    float: center;
+
+}
+
+.menu {
+  float: right;
+}
+
+.menu a {
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+.menu a:hover {
+  color: #a3a3a3;
+}
+
+/* bannière */
+.banner {
+  width: 100%;
+  max-width: 100%;
+}
+
+.ban {
+  width: 100%;
+  letter-spacing: 1px;
+  max-width: 100%;
+  position: relative;
+}
+
+.ban img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 50%;
+}
+
+.inner-banner {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+}
+
+.inner-banner h1 {
+  color: #ffffff;
+  text-shadow: 1px 1px 20px #000000;
+}
+
+.inner-banner .btn-custom{
+  background-color: #1485CC;
+  color: #ffffff;
+}
+
+.inner-banner .btn-custom:hover {
+  background-color: #a3a3a3;
+}
+
+/* about */
+
+#about {
+  text-align: center;
+}
+
+.about article h2 {
+  text-align: center;
+}
+.margue {
+margin-left: 2em;
+}
+
+/* Galerie */
+
+.galerie {
+  background-color: #eeeeee;
+
+}
+
+#galerie {
+  text-align: center;
+  margin-top: 30px;
+
+}
+
+#don {
+  text-align: center;
+  margin-top: 50px;
+
+}
+
+/* end Galerie */
+
+/* Contact */
+.footer {
+  background-color: #a3a3a3;
+}
+
+footer p {
+  color: #ffffff;
+  text-align: center;
+}
+
+.donner {
+  background-color: #a3a3a3;
+}
+
+donner d {
+  color: #ffffff;
+  text-align: center;
+}
+
+#contact {
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#contactes {
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.formulaireDeContact {
+  width: 500px;
+  display: block;
+  margin: 20 auto;
+  height: 300px;
+}.Contact {
+  width: 500px;
+  display: block;
+  margin: 20 auto;
+  height: 300px;
+}
+
+input {
+  marging-bottom: 420px;
+   text-align: center;
+}
+
+input [type=text] {
+  height: 40px;
+  width: 200px;
+  border: none;
+ text-align: center;
+}
+
+input [type=email] {
+  height: 60px;
+  width: 500px;
+  border: none;
+ text-align: center;
+
+}
+
+textarea {
+  width: 500px;
+  height: 200px;
+  resize: horizontal;
+}
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+     text-align: center;
+}
+
+input[class = "carte"] {
+    width: 10%;
+    padding: 2px 2px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+#col1
+{
+  float: left;
+  width:600px;
+  padding:30px;
+ height: 300px;
+}
+#col2
+{
+  margin-left:600px;
+  width:500px;
+  padding:60px;
+ height: 300px;
+}
+
+#col3
+{
+  float: left;
+  width:425px;
+  padding:15px;
+  height: 300px;
+  background-color:#B9ddd8;*
+}
+
+#col4
+{
+  margin-left:450px;
+  width:450px;
+  padding:15px;
+ height: 200px;
+  
+}
+
+#col5
+{
+  margin-left:995px;
+  width:200px;
+  padding:10px;/*diagonale*/
+ height: 300px;/*hauteur*/
+  background-color:#B9ddd8;
+}
+
+
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+.container {
+    padding: 16px;
+}
+
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    /*display: none;  Hidden by default */
+    //position: fixed; /* Stay in place */
+    //z-index: 1; /* Sit on top */
+    //left: 0;
+    //top: 0;
+    //width: 100%; /* Full width */
+    //height: 100%; /* Full height */
+    //overflow: auto; /* Enable scroll if needed */
+    //background-color: rgb(0,0,0); /* Fallback color */
+    //background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    //padding-top: 60px;
+    
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+button {
+    background-color: #4c69af;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+body {
+    background-color: lightblue;
+}
+
+h2, .ee {
+  color:  #4c69af;
+  margin: 1%;
+   text-align: center;
+}

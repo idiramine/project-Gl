@@ -4,7 +4,8 @@ class Article extends React.Component {
 
     var ar = this.props.art;
 
-    var deleteArticle = event => {this.props.onDel(ar);}
+    var deleteArticle = event => {this.props.onDel(ar.description,
+      ar.quantity,ar.observation);}
       return (<tr>
         <td>{this.props.art.description}</td>
         <td></td>
@@ -74,53 +75,79 @@ class ArticleApp extends React.Component {
   addArticle(description, quantity, observation ) {
 
       var newart = {description, quantity, observation};
+      var ar;
       superagent
       .get('/api/articleses') // not HATEOS :(
       .end( (err, response) => {
       if (err == null) {
-      var Artcls= response.body._embedded.articleses.filter(i => i!=newart);
+      var Artcls= response.body._embedded.articleses.filter(
+        i => i.description ==
+        newart.description);
+        ar=Artcls[0];
+        newart.quantity=newart.quantity+ar.quantity;
+        superagent
+        .put(ar._links.self.href)
+        .send(newart)
+        .end ( function(err, response) {
+          superagent
+          .get('/api/articleses') // not HATEOS :(
+          .end( (err, response) => {
+          if (err == null) {
+            superagent
+    .get('/api/articleses') // not HATEOS :(
+    .end( (err, response) => {
+    if (err == null) {
+    this.setState({Articles: response.body._embedded.articleses})
+  }
+    }.bind(this));
+          }
+          }.bind(this));
+
+
+      }.bind(this));
+
+}
+}.bind(this));
+  }
+
+
+
+
+  deleteArticleser(description, quantity, observation) {
+    var a={description,quantity,observation};
+    superagent
+    .get('/api/articleses') // not HATEOS :(
+    .end( (err, response) => {
+    if (err == null) {
+    var Artcls= response.body._embedded.articleses.filter(
+      i => i.description ==
+      a.description);
+      a=Artcls[0];
+      var f={description,quantity,observation};
+      f.quantity=0;
+    alert(a.quantity);
+      superagent
+      .put(a._links.self.href)
+      .send(f)
+      .end ( function(err, response) {
+        superagent
+        .get('/api/articleses') // not HATEOS :(
+        .end( (err, response) => {
+        if (err == null) {
+          superagent
+    .get('/api/articleses') // not HATEOS :(
+    .end( (err, response) => {
+    if (err == null) {
+    this.setState({Articles: response.body._embedded.articleses})
     }
-      });
-  superagent
-  .post('/api/articleses') // not HATEOS :(
-  .set('Content-Type', 'application/json')
-  .send(newart)
-  .end( function(err, response) {
-  if (err == null) {
-  this.setState({
-  Articles: [...this.state.Articles, newart]
-  });
-  }
+    }.bind(this));
+        }
+        }.bind(this));
+    }.bind(this));
+}
+
   }.bind(this));
-  }
-
-
-
-
-  deleteArticleser(ar) {
-  superagent
-  .delete(ar._links.self.href) // not HATEOS :(
-  .end( function(err, response) {
-  if (err == null) {
-    this.setState({
-  Articles: [...this.state.Articles.filter(i => i!=ar)]
-  });
-
-  }
-  }.bind(this));
-  ar.quantity=0;
-  superagent
-  .post('/api/articleses') // not HATEOS :(
-  .set('Content-Type', 'application/json')
-  .send(ar)
-  .end( function(err, response) {
-  if (err == null) {
-  this.setState({
-  Articles: [...this.state.Articles, ar ]
-  });
-  }
-  }.bind(this));
-  }
+}
 
 
   render() {

@@ -9,34 +9,64 @@ and open the template in the editor.
         <title>GESTIONS DES FICHIERS</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="../GestionFiles.css"/>
     </head>
     <body>
-        <form  th:action="@{/Addfile}" >
-        <input type="submit" value="Add files"/>
+        <form>
+        <input type="submit" value="Add files" onclick="document.getElementById('id01').style.display='block'"/>
         </form>  
-        <TABLE BORDER="1"> 
-  <CAPTION> LIST OF FILES </CAPTION> 
-  <TR> 
- <TH> Nom du Dossier </TH> 
- <TH> Voir Plus De Details </TH> 
- <TH> Supprimer </TH> 
- <TH> Faire Un Don </TH> 
-  </TR> 
-  <TR th:each="f : ${filescall}"  th:inline="text"> 
- <TD> [[${f.fileName}]]  </TD> 
- <TD> <a th:href="@{'/seefiles/' + ${f.idFile}}">(See)</a> </TD> 
- <TD> <a th:href="@{'/del-file?id=' + ${f.idFile}}">
-     <input type="submit" 
-          value="Del" 
-          onclick="return confirm('Supprimer ce dossier supprimera le benificiare ainsi que le conjoit et les enfants, \n\
-cela supprimera aussi les dons concernant ce dossier.\n\
-\n\
-êtes vous sur de vouloir continuer?')"/>
-     </a> </TD> 
- <TD> <a th:href="@{'/makeDonation?id=' + ${f.idFile}}">(don)</a> </TD> 
-  </TR>
-</TABLE>
         
+
+        <div id="id01" class="modal">
+  
+            <form class="modal-condtent animate" action="" />
+             <div class="imgcontainer">
+               <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+             </div>
+             <h2>complete the fields bellow and click on add</h2>
+
+      <div class="ee">********************************************************</div>
+      <div> 
+        <h2>Informations about the file</h2>
+        </div>
+      <div class="ee">********************************************************</div>
+      
+        <form  th:object="${file}" th:action="@{/addfiles}" method="post">
+        <div> File Name     <input class="ee" type="text" th:field="*{fileName}"  placeholder="Entrer un nom du dossier"  />    </div> 
+        <div> File Date     <input type="date" th:field="*{fileDate}" placeholder="Entrer une date " />    </div>
+        <div> Adress       <input type="text" th:field="*{adress}" placeholder="Entrer une date "  />      </div>
+        <div> Observation  <input type="text" th:field="*{observation}"  /> </div>
+        
+        <div class="ee">********************************************************</div>
+       <form  th:field="*{beneficiary}" th:object="${benef}" th:action="@{/addfiles}" method="post">
+        <div> beneficiary Name     <input type="text" th:field="*{beneficiaryName}"  />    </div> 
+        <div> beneficiary First Name     <input type="text" th:field="*{beneficiaryFirstName}"  />    </div> 
+        <div> beneficiary Date Of Birth     <input type="date" th:field="*{beneficiaryDateOfBirth}"  />    </div>
+        <div> beneficiary Place Of Birth     <input type="text" th:field="*{beneficiaryPlaceOfBirth}"  />    </div>
+        <div> beneficiary Situation       <input type="text" th:field="*{beneficiarySituation}"  />      </div>
+        <div> Observation  <input type="text" th:field="*{observation}"  /> </div>
+       <input type="submit" value="ADD"/>
+       </form> 
+    
+            </form>
+      </div>
+      <TABLE BORDER="1"> 
+          <CAPTION class="yo"> LIST OF FILES </CAPTION> 
+           <TR> 
+              <TH> Nom du Dossier </TH> 
+              <TH> Voir Plus De Details </TH> 
+              <TH> Supprimer </TH> 
+              <TH> Faire Un Don </TH> 
+          </TR> 
+          <TR th:each="f : ${filescall}"  th:inline="text"> 
+              <TD> [[${f.fileName}]]  </TD> 
+              <TD> <a th:href="@{'/seefiles/' + ${f.idFile}}">(See)</a> </TD> 
+              <TD> <a th:href="@{'/del-file?id=' + ${f.idFile}}">
+                <input type="submit" value="Del" onclick="return confirm('Supprimer ce dossier supprimera le benificiare ainsi que le conjoit et les enfants, \n\  cela supprimera aussi les dons concernant ce dossier.\n\ \n\ êtes vous sur de vouloir continuer?')"/>
+                    </a> </TD> 
+              <TD> <a th:href="@{'/makeDonation?id=' + ${f.idFile}}">(don)</a> </TD> 
+          </TR>
+        </TABLE>
     </body>
 </html>
 
