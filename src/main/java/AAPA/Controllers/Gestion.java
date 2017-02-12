@@ -18,7 +18,10 @@ import AAPA.Entity.Repo.ChildrensRepo;
 import AAPA.Entity.Repo.CompagnonRepo;
 import AAPA.Entity.Repo.DonationsRepo;
 import AAPA.Entity.Repo.FilesRepo;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
@@ -47,12 +50,27 @@ public class Gestion {
         List <Alarm> alarm= new ArrayList<>();
         
         for(int i=0;i<alarms.size();i++){
-        if(alarms.get(i).getdateDernierTraitement().equals(i)){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+            int dif= (Integer.parseInt(dateFormat.format(date).toString().substring(0, 4))*365+
+                    Integer.parseInt(dateFormat.format(date).toString().substring(5, 7))*30+
+                    Integer.parseInt(dateFormat.format(date).toString().substring(8, 10)))-
+                    (Integer.parseInt(alarms.get(i).getdateDernierTraitement().substring(0, 4))*365+
+                    Integer.parseInt(alarms.get(i).getdateDernierTraitement().substring(5, 7))*30+
+                    Integer.parseInt(alarms.get(i).getdateDernierTraitement().substring(8, 10)));
+            
+            if(alarms.get(i).getperiodicite().equals("Quotidienne")){
+                if(dif>0){ alarm.add(alarms.get(i));}
+        }else{
+            if(alarms.get(i).getperiodicite().equals("Hebdomadaire")){
+                if(dif>=7){ alarm.add(alarms.get(i));}
+        }else{
+            if(alarms.get(i).getperiodicite().equals("Mensuelle")){
+                if(dif>=30){ alarm.add(alarms.get(i));}
+        }}}}
+        m.addAttribute("alarms",alarm);
+        return "indexGPA";
         
-        }
-        }
-        m.addAttribute("alarms",alarms);
-        return "Gestion";
     }
     
     

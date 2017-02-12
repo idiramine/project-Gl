@@ -25,8 +25,11 @@ and open the template in the editor.
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
-          <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
-            <li class="active"><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
+          <li><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li ><a th:href="@{/ListPub}">Publications</a></li>
+              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+          <li class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+            <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
               <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
 
         </ul>
@@ -48,7 +51,7 @@ and open the template in the editor.
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-        
+     
     
             
         <div class="panel panel-default">
@@ -85,12 +88,15 @@ and open the template in the editor.
   <div class="panel-body">
         <form enctype="multipart/form-data"  th:object="${file}" th:action="@{/addfiles}" method="post">
             <div class="form-group" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">Informations Du Dossier</div></div>
             <div> File Name     <input class="form-control" type="text" th:field="*{fileName}"  placeholder="Entrer un nom du dossier"  />    </div> 
         <div> File Date     <input class="form-control" type="date" th:field="*{fileDate}" placeholder="Entrer une date " />    </div>
         <div> Adress       <input class="form-control" type="text" th:field="*{adress}" placeholder="Entrer une date "  />      </div>
         <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
         
-        <div >********************************************************</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Informations Du Beneficiare</div></div>
        <form  th:field="*{beneficiary}" th:object="${benef}" th:action="@{/addfiles}" method="post">
         <div> beneficiary Name     <input class="form-control" type="text" th:field="*{beneficiaryName}"  />    </div> 
         <div> beneficiary First Name     <input class="form-control" type="text" th:field="*{beneficiaryFirstName}"  />    </div> 
@@ -98,7 +104,7 @@ and open the template in the editor.
         <div> beneficiary Place Of Birth     <input class="form-control" type="text" th:field="*{beneficiaryPlaceOfBirth}"  />    </div>
         <div> beneficiary Situation       <input class="form-control" type="text" th:field="*{beneficiarySituation}"  />      </div>
         <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
-       <input type="submit" value="ADD"/>
+       <input type="submit" value="Ajouter" class="btn btn-success"/>
        </form> 
             </div>
        </form> 

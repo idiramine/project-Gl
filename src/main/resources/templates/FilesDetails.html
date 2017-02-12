@@ -21,8 +21,11 @@ and open the template in the editor.
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav">
           <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
-          <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
-            <li class="active"><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
+          <li><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li ><a th:href="@{/ListPub}">Publications</a></li>
+              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+          <li class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+            <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
               <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
 
         </ul>
@@ -121,9 +124,10 @@ and open the template in the editor.
     <h3 class="panel-title">Les Enfants</h3>
   </div>
   <div class="panel-body"> 
-      <TABLE th:field="childrens" class="table table-hover" > 
+      <TABLE th:field="childrens" class="table table-hover container" > 
+        <div class="form-group" >
           <thead>
-  <TR> 
+  <TR class="container"> 
  <TH> Name </TH> 
  <TH> First Name </TH> 
  <TH> Date Of Birth </TH> 
@@ -134,13 +138,23 @@ and open the template in the editor.
  <TH> Delete </TH> 
   </TR> 
           </thead>
-  <TR th:each="ch : ${file.childrens}"  th:inline="text"> 
- <TD> [[${ch.childrenName}]]<!--input type="text"  value="[[${ch.childrenName}]]"  /--> </TD> 
- <TD> [[${ch.childrenFirstName}]]<!--input type="text" value="[[${ch.childrenFirstName}]]"  /--> </TD> 
- <TD> [[${ch.childrenDateOfBirth}]]<!--input type="text"  value="[[${ch.childrenDateOfBirth}]]"  /--> </TD> 
- <TD> [[${ch.childrenPlaceOfBirth}]]<!--input type="text"  value="[[${ch.childrenPlaceOfBirth}]]"  /--> </TD> 
- <TD> [[${ch.childrenSchooling}]]<!--input type="text"  value="[[${ch.childrenSchooling}]]"  /--> </TD> 
- <TD> [[${ch.observation}]]<!--input type="text"  value="[[${ch.observation}]]"  /--> </TD> 
+  <TR th:each="ch : ${file.childrens}"  th:inline="text" class="container">
+      <form  th:object="${child}"
+                th:action="@{'/modifyChild'(id=  ${file.idFile} , idch= ${ch.idChildren})}"
+                method="post">
+          <input type="hidden" th:field="*{idChildren}" value="[[${ch.idChildren}]]"  />
+ <TD> [[${ch.childrenName}]]
+     <input style="width:140px" type="text" th:field="*{childrenName}" value="[[${ch.childrenName}]]"  /> </TD> 
+ <TD> [[${ch.childrenFirstName}]]
+     <input style="width:140px" type="text" th:field="*{childrenFirstName}" value="[[${ch.childrenFirstName}]]"  /> </TD> 
+ <TD> [[${ch.childrenDateOfBirth}]]
+     <input style="width:140px" type="date" th:field="*{childrenDateOfBirth}" value="[[${ch.childrenDateOfBirth}]]"  /> </TD> 
+ <TD> [[${ch.childrenPlaceOfBirth}]]
+     <input style="width:140px" type="text" th:field="*{childrenPlaceOfBirth}" value="[[${ch.childrenPlaceOfBirth}]]"  /> </TD> 
+ <TD> [[${ch.childrenSchooling}]]
+     <input style="width:140px" type="text" th:field="*{childrenSchooling}" value="[[${ch.childrenSchooling}]]"  /> </TD> 
+ <TD> [[${ch.observation}]]
+     <input style="width:140px"  type="text" th:field="*{observation}" value="[[${ch.observation}]]"  /> </TD> 
  
       <TD> <input type="submit" value="Modifier" class="btn btn-success" /> </TD>
       
@@ -148,9 +162,10 @@ and open the template in the editor.
       <input type="button"
           value="DEL" class="btn btn-danger"
           onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
-    
+      </form>
   </TR> 
-</TABLE>
+        </div>
+</TABLE >
   </div>
        <div class="panel-heading">Ajoutter Un Enfant</div>
       <form  enctype="multipart/form-data" th:object="${child}" th:action="@{/addChild}" method="post">
@@ -237,8 +252,8 @@ and open the template in the editor.
         <div> Titre     <input class="form-control" type="text" th:field="*{title}"/>    </div> 
         <div> Periodicité     <FORM class="form-control">
                             <SELECT th:field="*{periodicite}">
-                            <OPTION value="Quotidien"> Quotidien  </OPTION>
-                            <OPTION value="Mensuel"> Mensuel   </OPTION>
+                            <OPTION value="Quotidien"> Quotidienne  </OPTION>
+                            <OPTION value="Mensuel"> Mensuelle   </OPTION>
                             <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>
                             <OPTION value="Aucune"> Aucune  </OPTION>
                             </SELECT>

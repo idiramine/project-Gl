@@ -28,13 +28,18 @@ and open the template in the editor.
           <li><a th:href="@{/LesQuestions}">Questions</a></li>
             <li ><a th:href="@{/ListPub}">Publications</a></li>
               <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+            <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+            <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
+              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
 
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" 
+               data-toggle="dropdown" role="button" aria-haspopup="true" 
+               aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Action</a></li>
               <li><a href="#">Another action</a></li>
@@ -48,47 +53,37 @@ and open the template in the editor.
     </div><!-- /.container-fluid -->
   </nav>
 
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="/img/image1.jpg" width="400" height="200"/>
-      <div class="carousel-caption">
-<img src="/img/image2.jpg" width="400" height="200"/>
-      </div>
-    </div>
-
-      <div class="carousel-caption">
-<img src="/img/image3.jpg" width="400" height="200"/>
-      </div>
-
-
+      
+      <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Les Alarmes Des Dossiers</h3>
+  </div>
+  <div class="panel-body">
+      <TABLE class="table table-hover"> 
+          <thead>
+  <TR> 
+ <TH> Titre </TH> 
+ <TH> Periodicité </TH> 
+ <TH> Date De Debut </TH> 
+ <TH> Date Dernier Traitement </TH> 
+ <TH> Traiter </TH> 
+  </TR> 
+          </thead>
+  <TR th:each="d : ${alarms}"  th:inline="text"> 
+ <TD> [[${d.title}]] </TD> 
+ <TD> [[${d.periodicite}]] </TD> 
+ <TD> [[${d.dateDebut}]] </TD> 
+ <TD> [[${d.dateDernierTraitement}]] </TD> 
+ <TD> <a th:href="@{'/traiterAlarms?idal=' + ${d.idAlarm}}">
+      <input type="button"
+          value="Traiter" class="btn btn-success" /> </a> </TD> 
+  </TR> 
+      </TABLE>  
   </div>
 
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
+      
+      
 
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap.js"></script>
-
-
-
-
-        <div>TODO write content</div>
     </body>
 </html>

@@ -55,7 +55,6 @@ public class GIController {
         m.addAttribute("file",file);
         Beneficiary benef=new Beneficiary();
         m.addAttribute("benef",benef);
-        
         return "GestionFiles"; 
     }
     
@@ -123,15 +122,6 @@ public class GIController {
         
         return "redirect:/gestionfiles";
     }
-   
-    @RequestMapping("/Addfile")
-    public String method5 (Model m){
-        Files file=new Files();
-        Beneficiary benef=new Beneficiary();
-        m.addAttribute("file",file);
-        m.addAttribute("benef",benef);
-   return "Addfiles";
-    }
     
      @RequestMapping("/addfiles")
     public String addfiles(Files f, Beneficiary b) {
@@ -191,28 +181,6 @@ public class GIController {
            
     }
     
-    @RequestMapping("/addBeneficiaries")
-    public String addBeneficiaries( @RequestParam("id") long idFile, Model m) {
-        Files file = fs.findOne(idFile);
-       
-        if(file.getBeneficiary()==null){
-             m.addAttribute("file", file);
-        m.addAttribute("benef", new Beneficiary());
-            return "AddBeneficiary";
-        }
-        return "redirect:/seefiles/"+idFile;
-    }
-        
-    @RequestMapping("/addBeneficiary")
-    public String addBeneficiary( @RequestParam("id") long idFile, 
-            Beneficiary benef) {
-        Files file = fs.findOne(idFile);
-        bs.save(benef);
-        file.setBeneficiary(benef);
-        fs.save(file);
-        return "redirect:/seefiles/"+idFile;
-    }
-    
     @RequestMapping("/modifyBeneficiary/{idFile}")
     public String modifyBeneficiary(@PathVariable("idFile") long idFile, 
             Beneficiary benef) {
@@ -248,20 +216,6 @@ public class GIController {
     }
         return "redirect:/seefiles/"+idFile;
            
-    }
-    
-    @RequestMapping("/addCompagnons")
-    public String addCompagnons( @RequestParam("id") long idFile, Model m) {
-        Files file = fs.findOne(idFile);
-       
-        if(file.getCompagnon()==null){
-             m.addAttribute("file", file);
-        m.addAttribute("comp", new Compagnon());
-            return "AddCompagnon";
-        }
-        System.out.println("8");
-        
-        return "redirect:/seefiles/"+idFile;
     }
     
     @RequestMapping("/addCompagnon")
@@ -333,16 +287,23 @@ public class GIController {
     }
     
     @RequestMapping("/modifyChild")
-    public String modifyChild( @RequestParam("id") long idFile, 
+    public String modifyChild( @RequestParam("id") long idFile,
+            @RequestParam("idch") long idchild,
             Childrens child) {
         Files file = fs.findOne(idFile);
-        Childrens oldchild = chs.findOne(child.getIdChildren());
-        oldchild.setChildrenDateOfBirth(child.getChildrenDateOfBirth());
-        oldchild.setChildrenFirstName(child.getChildrenFirstName());
-        oldchild.setChildrenName(child.getChildrenName());
-        oldchild.setChildrenPlaceOfBirth(child.getChildrenPlaceOfBirth());
-        oldchild.setObservation(child.getObservation());
-        oldchild.setChildrenSchooling(child.getChildrenSchooling());
+        Childrens oldchild = chs.findOne(idchild);
+        if(!child.getChildrenDateOfBirth().equals(""))
+            oldchild.setChildrenDateOfBirth(child.getChildrenDateOfBirth());
+        if(!child.getChildrenFirstName().equals(""))
+            oldchild.setChildrenFirstName(child.getChildrenFirstName());
+        if(!child.getChildrenName().equals(""))
+            oldchild.setChildrenName(child.getChildrenName());
+        if(!child.getChildrenPlaceOfBirth().equals(""))
+            oldchild.setChildrenPlaceOfBirth(child.getChildrenPlaceOfBirth());
+        if(!child.getObservation().equals(""))
+            oldchild.setObservation(child.getObservation());
+        if(!child.getChildrenSchooling().equals(""))
+            oldchild.setChildrenSchooling(child.getChildrenSchooling());
         chs.save(oldchild);
         fs.save(file);
         return "redirect:/seefiles/"+idFile;
@@ -385,23 +346,6 @@ public class GIController {
         m.addAttribute("articles",articles);
         m.addAttribute("don",don);
    return ("AddDonationArticle"); 
-    }
-    
-    @RequestMapping("/makeDonationfilearticle")
-    public String makeDonation ( Model m){
-       List <Articles> articles=as.findAll();//filtrer ceux qui ont zero
-       List <Files> files=fs.findAllByOrderByfileNameAsc();//filtrer ceux qui ont zero
-       int i=0;
-       while(i<articles.size()){
-           if(articles.get(i).getQuantity()==0){ 
-              articles.remove(i);
-           }else i++;//System.out.println(""+articles.get(i).getQuantity());
-       }
-       Donations don=new Donations();
-        m.addAttribute("files",files);
-        m.addAttribute("articles",articles);
-        m.addAttribute("don",don);
-   return ("AddDonationFileArticle"); 
     }
     
     @RequestMapping("/addDonation")
@@ -527,6 +471,16 @@ public class GIController {
         al.setdateDernierTraitement(dateFormat.format(date).toString());
         als.save(al);
         return "redirect:/seefiles/"+idFile;
+    }
+    
+    @RequestMapping("/traiterAlarms")
+    public String traiterAlarms(@RequestParam("idal") long idAlarm) {
+        Alarm al= als.findOne(idAlarm);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        al.setdateDernierTraitement(dateFormat.format(date).toString());
+        als.save(al);
+        return "redirect:/Gestion";
     }
     
     @RequestMapping("/modifyAlarm")
