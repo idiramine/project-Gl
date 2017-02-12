@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body class="container">
+
+      <!--nav class="navbar navbar-inverse"-->
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">AAPA</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li class="active"><a th:href="@{/ListPub}">Publications</a></li>
+              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+         <div class="panel panel-default">
+           <!-- Default panel contents -->
+           <div class="panel-heading">PUBLICATIONS</div>
+
+           <!-- Table -->
+           <table class="table table-hover" >
+                   <thead>
+                   <tr>
+                       <th>Title</th>
+                       <th>Description</th>
+                       <th>Date</th>
+                       <th>Image</th>
+
+                         <th>Modifier</th>
+                       <th>Supprimer</th>
+                   </tr>
+                   </thead>
+
+                   <tbody>
+                   <tr th:each="pubb : ${ pubAff }">
+
+                       <td th:hidden="${pubb.idPub}"></td>
+                       <td th:text="${pubb.titlePub}"></td>
+
+                       <td th:text="${pubb.descPub}"></td>
+                       <td th:text="${pubb.datePub}"></td>
+                       <td>
+                           <img class="img-circle" th:src="@{getPhoto(id=${pubb.idPub})}" width="100" height="100" />
+                       </td>
+
+                       <!--td><img th:src="System.getProperty("user.home")+"/aapa/"+"${pubb.photoPub}" /></td-->
+
+                       <td><a th:href="@{'/edit?id='+ ${pubb.idPub}}"><button type="submit" class="btn btn-success">Modif</button></a></td >
+                       <td><a onclick="return confirm('Etes vous sur de vouloir supprimer cet élément ?')" th:href="@{'/DeletePub?id='+ ${pubb.idPub}}"><button type="submit" class="btn btn-danger">Suppr</button></a></td>
+                   </tr>
+                   </tbody>
+               </table>
+
+
+         </div>
+
+    <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"> Ajouter une nouvelle Pubblication</h3>
+  </div>
+  <div class="panel-body">
+
+    <div>
+             <form th:object="${pubblications}" th:action="@{/addPub}"  method="POST" enctype="multipart/form-data" >
+                <div class="form-group">
+                                                <input class="form-control" type="hidden" th:field="*{idPub}" /><br />
+                 <label>Titre: </label>         <input class="form-control" type="text" th:field="*{titlePub}" /><br />
+                 <label>Description: </label>   <input class="form-control" type="text" th:field="*{descPub}" width="200" height="100"/><br />
+                 <label>Photo: </label>         <input type="file" th:name="picture"/><br />
+                 <label>Date: </label>          <input class="form-control" type="text" th:field="*{datePub}" />
+
+                    <button type="submit">Ajouter</button>
+                    <button type="reset">Annuler</button>
+                  </div>
+
+
+            </form>
+     </div>
+
+  </div>
+</div>
+
+    </body>
+</html>

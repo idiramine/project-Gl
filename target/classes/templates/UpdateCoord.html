@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://thymeleaf.org">
+    <head>
+        <title>MAJ Staff</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+    </head>
+    <body class="container" >
+      <!--nav class="navbar navbar-inverse"-->
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">AAPA</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li><a th:href="@{/ListPub}">Publications</a></li>
+              <li class="active"><a th:href="@{/GestCoor}">Coordonnées</a></li>
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+      <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"> Ajouter une nouvelle Pubblication</h3>
+    </div>
+    <div class="panel-body">
+
+      <div>
+        <form th:action="@{/updateCoord}" th:object="${corr}" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+
+                    <input type="hidden" th:field="*{idCoor}" /><br />
+                    <input class="form-control" type="text"  th:field="*{nomCoor}"  />  <br />
+                    <input class="form-control" type="text"  th:field="*{prenomCoor}"  /><br />
+                    <input class="form-control" type="text"  th:field="*{telCoor}" /><br />
+                    <input class="form-control" type="text"  th:field="*{mailCoor}"  /><br />
+                    <input class="form-control" type="text"  th:field="*{fonctionCoor}"  />  <br />
+ 
+
+
+                    <input type="submit" value="OK"/>
+
+                </div>
+            </form>
+          </div>
+
+         </div>
+         </div>
+
+    </body>
+</html>
