@@ -9,120 +9,194 @@ and open the template in the editor.
         <title>Files</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
-    <body xmlns:th="http://www.thymeleaf.org">
-        <form  th:action="@{/gestionfiles}" >
-        <input type="submit" value="goback"/>
+    <body xmlns:th="http://www.thymeleaf.org" class="container">
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">AAPA</a>
+      </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li ><a th:href="@{/ListPub}">Publications</a></li>
+              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+          <li class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+            <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
+              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+        
+        
+        
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Informations Sur Le Dossier</h3>
+  </div>
+  <div class="panel-body">
+        <form   th:object="${file}"
+                th:action="@{'/modifyFile/' + ${file.idFile}}" method="post">
+            <div class="form-group" >
+            <div> File id     <input class="form-control" type="text" th:field="*{idFile}" value="[[${file.idFile}]]"  />    </div> 
+            <div> File Name   <input class="form-control" type="text" th:field="*{fileName}" value="[[${file.fileName}]]" />    </div> 
+            <div> File Date   <input class="form-control" type="date" th:field="*{fileDate}" value="[[${file.fileDate}]]" />    </div>
+            <div> File Adress <input class="form-control" type="text" th:field="*{adress}" value="[[${file.adress}]]" />      </div>
+            <div> Observation <input class="form-control" type="text" th:field="*{observation}"  value="[[${file.observation}]]" /> </div>
+            <input type="submit" class="btn btn-success" value="Modifier Le Fichier" />
+       </div>
         </form>  
-        <div style='background-color: yellow'>***********************************</div>
-        <div style='background-color: yellow'>**********  The File  **********</div>
-        <div style='background-color: yellow'>***********************************</div>
-        <div   th:inline="text"> 
-            <div>    File Name= [[${file.fileName}]]   </div>
-            <div>    File Name= [[${file.fileDate}]]   </div>
-            <div>    File Name= [[${file.adress}]]   </div>
-            <div>    File Name= [[${file.observation}]]   </div>
+    </div>
+
+    </div>
+        
+        
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Le Beneficiare</h3>
+  </div>
+  <div class="panel-body">
+        <form  class ="middle" th:field="*{beneficiary}" th:object="${benef}"
+                th:action="@{'/modifyBeneficiary/' + ${file.idFile}}" method="post">
+            <div class="form-group" >
+            <div> Beneficiary Name     <input class="form-control" id="r1"  type="text" th:field="*{beneficiaryName}" value="[[${beneficiaryName}]]"  />    </div> 
+            <div> Beneficiary First Name     <input class="form-control" id="r1" type="text" th:field="*{beneficiaryFirstName}" value="[[${beneficiaryFirstName}]]" />    </div> 
+            <div> Beneficiary Date Of Birth     <input class="form-control" id="r1" type="date" th:field="*{beneficiaryDateOfBirth}" value="[[${beneficiaryDateOfBirth}]]" />    </div>
+            <div> Beneficiary Place Of Birth     <input class="form-control" id="r1" type="text" th:field="*{beneficiaryPlaceOfBirth}" value="[[${beneficiaryPlaceOfBirth}]]"  />    </div>
+            <div> Beneficiary Situation       <input class="form-control" id="r1" type="text" th:field="*{beneficiarySituation}" value="[[${beneficiarySituation}]]" />      </div>
+            <div> Observation  <input class="form-control" id="r1" type="text" th:field="*{observation}"  value="[[${b.observation}]]" /> </div>
+                <input type="submit" class="btn btn-success" value="Modifier Beneficiary" />
+                <a th:href="@{'/deleteBeneficiary?id=' + ${file.idFile}}">
+                <input type="button" value="Delete Beneficiary" class="btn btn-danger"
+                    onclick="return confirm('Are you sure of your choice pof ?')"/>
+                </a> 
+            </div>
+        </form>  
+  </div>
         </div>
+
         
-        <div style='background-color: blue'>***********************************</div>
-        <div style='background-color: blue'>**********  Beneficiary  **********</div>
-        <div style='background-color: blue'>***********************************</div>
-        <div th:each="b : ${file.beneficiary}" th:inline="text" >
-            
-            <div>    Beneficiary Name=  [[${b.beneficiaryName}]]  </div>
-            <div>    Beneficiary First Name=  [[${b.beneficiaryFirstName}]]  </div>
-            <div>    Beneficiary Date Of Birth=  [[${b.beneficiaryDateOfBirth}]]  </div>
-            <div>    Beneficiary Place Of Birth=  [[${b.beneficiaryPlaceOfBirth}]]  </div>
-            <div>    Beneficiary Situation=  [[${b.beneficiarySituation}]]  </div>
-            <div>    Beneficiary observation=  [[${b.observation}]]  </div>
-        </div>  
-        <form>
-        <!--input type="submit" value="Add Benfeciary" th:action="@{/AddBeneficiary}" /-->
-        <!--input type="submit" value="Delete Benfeciary"/-->
-            <a th:href="@{'/addBeneficiaries?id=' + ${file.idFile}}">(ADD BENEFICIARY)</a>
-            <a th:href="@{'/deleteBeneficiary?id=' + ${file.idFile}}"
-               onclick="return confirm('Are you sure of your choice ?')">(DELETE BENEFICIARY)</a>
-                
-                <!--input type="submit" 
-          value="DELETE BENEFICIARY" /></a-->
-            
-          <!--onclick="return confirm('Are you sure of your choice ?')"-->
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Le Conjoint</h3>
+  </div>
+  <div class="panel-body">
+        <form  class ="middle" th:field="*{compagnon}" th:object="${comp}"
+                th:action="@{'/modifyCompagnon/' + ${file.idFile}}" method="post">
+            <div class="form-group" >
+            <div> Compagnon Name <input class="form-control" type="text" th:field="*{compagnonName}" value="${file.compagnon.compagnonName}"  />    </div> 
+            <div> Compagnon First Name     <input class="form-control" type="text" th:field="*{compagnonFirstName}" value="[[${compagnonFirstName}]]" />    </div> 
+            <div> Compagnon Date Of Birth     <input class="form-control" type="date" th:field="*{compagnonDateOfBirth}" value="[[${compagnonDateOfBirth}]]" />    </div>
+            <div> Compagnon Place Of Birth     <input class="form-control" type="text" th:field="*{compagnonPlaceOfBirth}" value="[[${compagnonPlaceOfBirth}]]"  />    </div>
+            <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  value="[[${observation}]]" /> </div>
+            <input type="submit" class="btn btn-success" value="Modifier Compagnon" />
+        <a th:href="@{'/deleteCompagnon?id=' + ${file.idFile}}">
+        <input type="button" class="btn btn-danger" value="Delete Compagnon"
+               onclick="return confirm('Are you sure of your choice pof ?')"/>
+        </a> 
+            </div>
         </form> 
+      
+  </div></div>
         
-        
-        <div style='background-color: orange'>***********************************</div>
-        <div style='background-color: orange'>**********  Compagnon  **********</div>
-        <div style='background-color: orange'>***********************************</div>
-        <div th:each="c : ${file.compagnon}" th:inline="text">
-                
-            <div>    Compagnon Name=  [[${c.compagnonName}]]  </div>
-            <div>    Compagnon First Name=  [[${c.compagnonFirstName}]]  </div>
-            <div>    Compagnon Date Of Birth=  [[${c.compagnonDateOfBirth}]]  </div>
-            <div>    Compagnon Place Of Birth=  [[${c.compagnonPlaceOfBirth}]]  </div>
-            <div>    Compagnon observation=  [[${c.observation}]]  </div>          
-        </div> 
-        <form>
-        <!--input type="submit" value="Add Compagnon" th:action="@{/AddBeneficiary}" /-->
-        <!--input type="submit" value="Delete Compagnon"/-->
-            <a th:href="@{'/addCompagnons?id=' + ${file.idFile}}">(ADD COMPAGNON)</a>
-            <a th:href="@{'/deleteCompagnon?id=' + ${file.idFile}}" 
-          onclick="return confirm('Are you sure of your choice ?')">(DELETE COMPAGNON)</a>
-        </form> 
-        
-        
-        
-        <div style='background-color: greenyellow'>***********************************</div>
-        <div style='background-color: greenyellow'>**********  Childrens  **********</div>
-        <div style='background-color: greenyellow'>***********************************</div>
-        <TABLE BORDER="1"> 
-  <CAPTION> list of Childrens </CAPTION> 
-  <TR> 
+      <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Les Enfants</h3>
+  </div>
+  <div class="panel-body"> 
+      <TABLE th:field="childrens" class="table table-hover container" > 
+        <div class="form-group" >
+          <thead>
+  <TR class="container"> 
  <TH> Name </TH> 
  <TH> First Name </TH> 
  <TH> Date Of Birth </TH> 
  <TH> Place Of Birth </TH> 
  <TH> Schooling </TH> 
  <TH> Observation </TH> 
+ <TH> Modify </TH> 
  <TH> Delete </TH> 
   </TR> 
-  <TR th:each="ch : ${file.childrens}"  th:inline="text"> 
- <TD> [[${ch.childrenName}]] </TD> 
- <TD> [[${ch.childrenFirstName}]] </TD> 
- <TD> [[${ch.childrenDateOfBirth}]] </TD> 
- <TD> [[${ch.childrenPlaceOfBirth}]] </TD> 
- <TD> [[${ch.childrenSchooling}]] </TD> 
- <TD> [[${ch.observation}]] </TD> 
- <TD> <a th:href="@{'/deleteChild'(id=  ${file.idFile} , idch= ${ch.idChildren})}">
-      <input type="submit"
-          value="DEL" 
-          onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
-  </TR> 
-</TABLE>
-        
-        
+          </thead>
+  <TR th:each="ch : ${file.childrens}"  th:inline="text" class="container">
+      <form  th:object="${child}"
+                th:action="@{'/modifyChild'(id=  ${file.idFile} , idch= ${ch.idChildren})}"
+                method="post">
+          <input type="hidden" th:field="*{idChildren}" value="[[${ch.idChildren}]]"  />
+ <TD> [[${ch.childrenName}]]
+     <input style="width:140px" type="text" th:field="*{childrenName}" value="[[${ch.childrenName}]]"  /> </TD> 
+ <TD> [[${ch.childrenFirstName}]]
+     <input style="width:140px" type="text" th:field="*{childrenFirstName}" value="[[${ch.childrenFirstName}]]"  /> </TD> 
+ <TD> [[${ch.childrenDateOfBirth}]]
+     <input style="width:140px" type="date" th:field="*{childrenDateOfBirth}" value="[[${ch.childrenDateOfBirth}]]"  /> </TD> 
+ <TD> [[${ch.childrenPlaceOfBirth}]]
+     <input style="width:140px" type="text" th:field="*{childrenPlaceOfBirth}" value="[[${ch.childrenPlaceOfBirth}]]"  /> </TD> 
+ <TD> [[${ch.childrenSchooling}]]
+     <input style="width:140px" type="text" th:field="*{childrenSchooling}" value="[[${ch.childrenSchooling}]]"  /> </TD> 
+ <TD> [[${ch.observation}]]
+     <input style="width:140px"  type="text" th:field="*{observation}" value="[[${ch.observation}]]"  /> </TD> 
+ 
+      <TD> <input type="submit" value="Modifier" class="btn btn-success" /> </TD>
       
-        <form   th:object="${child}" th:action="@{/addChild}" method="post">
-        <input type="hidden" name="id" th:value="${file.idFile}" />
-        <div> children Name     <input type="text" th:field="*{childrenName}"  />    </div> 
-        <div> children First Name     <input type="text" th:field="*{childrenFirstName}"  />    </div> 
-        <div> children Date Of Birth     <input type="date" th:field="*{childrenDateOfBirth}"  />    </div>
-        <div> children Place Of Birth     <input type="text" th:field="*{childrenPlaceOfBirth}"  />    </div>
-        <div> children Schooling       <input type="text" th:field="*{childrenSchooling}"  />      </div>
-        <div> Observation  <input type="text" th:field="*{observation}"  /> </div>
-       <input type="submit" value="ADD"/>
-       </form> 
-        <div style='background-color: pink'>***********************************</div>
-        <div style='background-color: pink'>********** Donations  **********</div>
-        <div style='background-color: pink'>***********************************</div>
-         <TABLE BORDER="1"> 
-  <CAPTION> list of donations </CAPTION> 
+ <TD> <a th:href="@{'/deleteChild'(id=  ${file.idFile} , idch= ${ch.idChildren})}">
+      <input type="button"
+          value="DEL" class="btn btn-danger"
+          onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
+      </form>
+  </TR> 
+        </div>
+</TABLE >
+  </div>
+       <div class="panel-heading">Ajoutter Un Enfant</div>
+      <form  enctype="multipart/form-data" th:object="${child}" th:action="@{/addChild}" method="post">
+        <div class="form-group" >
+          <input type="hidden" name="id" th:value="${file.idFile}" />
+        <div> children Name     <input class="form-control" type="text" th:field="*{childrenName}"/>    </div> 
+        <div> children First Name     <input class="form-control" type="text" th:field="*{childrenFirstName}"  />    </div> 
+        <div> children Date Of Birth     <input class="form-control" type="date" th:field="*{childrenDateOfBirth}"  />    </div>
+        <div> children Place Of Birth     <input class="form-control" type="text" th:field="*{childrenPlaceOfBirth}"  />    </div>
+        <div> children Schooling       <input class="form-control" type="text" th:field="*{childrenSchooling}"  />      </div>
+        <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
+       <input class="btn btn-success" type="submit" value="Ajoutter un Enfant"/>
+        </div> 
+      </form></div>
+       
+        
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Les Dons</h3>
+  </div>
+  <div class="panel-body">
+      <TABLE class="table table-hover"> 
+          <thead>
   <TR> 
  <TH> Donation file name </TH> 
  <TH> Donation article </TH> 
  <TH> Quantity </TH> 
  <TH> Date </TH> 
  <TH> Observation </TH> 
-  </TR> 
+  </TR>
+          </thead>
   <TR th:each="d : ${dons}"  th:inline="text"> 
  <TD> [[${d.file.fileName}]] </TD> 
  <TD> [[${d.article.description}]] </TD> 
@@ -131,11 +205,75 @@ and open the template in the editor.
  <TD> [[${d.observation}]] </TD> 
  <TD> <a th:href="@{'/deleteDonationFile?id=' + ${d.idDonation}}">
       <input type="submit"
-          value="ANNULER" 
+          value="ANNULER" class="btn btn-danger"
           onclick="return confirm('Are you sure of your choice ?')"/> </a>  </TD> 
   </TR> 
 </TABLE>
-        
+  </div></div>
+  
+       
+       <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Les Alarmes</h3>
+  </div>
+  <div class="panel-body">
+      <TABLE class="table table-hover"> 
+          <thead>
+  <TR> 
+ <TH> Titre </TH> 
+ <TH> Periodicité </TH> 
+ <TH> Date De Debut </TH> 
+ <TH> Date Dernier Traitement </TH> 
+ <TH> Traiter </TH> 
+ <TH> Annuler </TH> 
+ <TH> Modifier </TH> 
+  </TR> 
+          </thead>
+  <TR th:each="d : ${file.alarms}"  th:inline="text"> 
+      <form  th:object="${alarm}"
+                th:action="@{'/modifyAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}"
+                method="post">
+ <TD> [[${d.title}]] <input class="form-control" type="text" th:value="${d.title}" th:field="*{title}"/></TD> 
+ <TD> [[${d.periodicite}]] <FORM class="form-control">
+                            <SELECT th:field="*{periodicite}">
+                            <OPTION value="Quotidien"> Quotidienne  </OPTION>
+                            <OPTION value="Mensuel"> Mensuelle   </OPTION>
+                            <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>
+                            <OPTION value="Aucune"> Aucune  </OPTION>
+                            </SELECT>
+                        </FORM></TD> 
+ <TD> [[${d.dateDebut}]] <input class="form-control" type="date" th:field="*{dateDebut}"  /> </TD> 
+ <TD> [[${d.dateDernierTraitement}]] <input class="form-control" type="date" th:field="*{dateDernierTraitement}"  /></TD> 
+ <TD> <a th:href="@{'/traiterAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}">
+      <input type="button"
+          value="Traiter" class="btn btn-success" /> </a> </TD> 
+ <TD> <a th:href="@{'/deleteAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}">
+      <input type="button"
+          value="ANNULER" class="btn btn-danger" 
+          onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
+ <TD> <input type="submit" value="Modifier" class="btn btn-success"/> </TD> 
+      </form>
+  </TR> 
+      </TABLE>  </div>
+        <div class="panel-heading">Ajoutter Une Alarme</div>
+<form  enctype="multipart/form-data"  th:object="${alarm}" th:action="@{/addAlarm}" method="post">
+       <div class="form-group" >
+           <input type="hidden" name="id" th:value="${file.idFile}" />
+        <div> Titre     <input class="form-control" type="text" th:field="*{title}"/>    </div> 
+        <div> Periodicité     <FORM class="form-control">
+                            <SELECT th:field="*{periodicite}">
+                            <OPTION value="Quotidien"> Quotidienne  </OPTION>
+                            <OPTION value="Mensuel"> Mensuelle   </OPTION>
+                            <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>
+                            <OPTION value="Aucune"> Aucune  </OPTION>
+                            </SELECT>
+                        </FORM>
+        </div> 
+        <div> Date de debut     <input class="form-control" type="date" th:field="*{dateDebut}"  />    </div>
+        <input type="submit" class="btn btn-success" value="Ajoutter une Alarme"/>
+
+       </div></form> 
+</div>
         
         
     </body>

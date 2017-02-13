@@ -6,7 +6,11 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://thymeleaf.org">
     <head>
+<<<<<<< HEAD
         <title> Gestion PA</title>
+=======
+        <title>TODO supply a title</title>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/css/bootstrap.min.css" rel="stylesheet"/>
@@ -23,11 +27,19 @@ and open the template in the editor.
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<<<<<<< HEAD
         <ul class="nav navbar-nav">
           <li><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
           <li class="active"><a th:href="@{/GPA/}">Gestion Page d'Accueil</a></li>
             <li ><a th:href="@{/GPA/}">Gestion Interne</a></li>
               <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li>
+=======
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li><a th:href="@{/ListPub}">Publications</a></li>
+              <li class="active"><a th:href="@{/GestCoor}">Coordonnées</a></li>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
 
         </ul>
 
@@ -35,6 +47,7 @@ and open the template in the editor.
         <ul class="nav navbar-nav navbar-right">
 
           <li class="dropdown">
+<<<<<<< HEAD
             <a id="dLabel" data-target="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Plus <span class="caret"></span></a>
             <ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
                 <li><a href="#">Action</a></li>
@@ -44,12 +57,23 @@ and open the template in the editor.
                 <li><a href="#">Separated link</a></li>
             </ul>
 
+=======
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
+<<<<<<< HEAD
 <ul class="nav nav-tabs">
   <li role="presentation"><a th:href="@{/GPA/ListPub}">Pubblications</a></li>
   <li role="presentation"><a th:href="@{/GPA/LesQuestions}">Questions</a></li>
@@ -58,6 +82,8 @@ and open the template in the editor.
 </ul>
 
 
+=======
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
         <div class="panel panel-default">
            <!-- Default panel contents -->
            <div class="panel-heading">COORDONNEES</div>
@@ -71,7 +97,10 @@ and open the template in the editor.
                        <th>Telephone</th>
                        <th>Adresse</th>
                        <th>Fax</th>
+<<<<<<< HEAD
                        <th>Logo</th>
+=======
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
                        <th>Modifier</th>
 
                    </tr>
@@ -87,13 +116,24 @@ and open the template in the editor.
                        <td th:text="${infoo.telInf}"></td>
                        <td th:text="${infoo.adresseInf}"></td>
                        <td th:text="${infoo.faxInf}"></td>
+<<<<<<< HEAD
+=======
+                       <td>
+
+                       </td>
+
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
 
                        <td>
                        <img class="img-circle" th:src="@{getLogo(idLog=${infoo.idInf})}" width="100" height="100" />
                        </td>
 
                        <!--td><img th:src="System.getProperty("user.home")+"/aapa/"+"${pubb.photoPub}" /></td-->
+<<<<<<< HEAD
                        <td><a th:href="@{'/GPA/editInfos?id='+ ${infoo.idInf}}"><button type="submit" class="btn btn-success">Modifier</button></a></td >
+=======
+                       <td><a th:href="@{'/editInfos?id='+ ${infoo.idInf}}"><button type="submit" class="btn btn-success">Modif</button></a></td >
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
                    </tr>
                    </tbody>
                </table>
@@ -132,14 +172,23 @@ and open the template in the editor.
                            <td th:text="${coord.fonctionCoor}"></td>
 
                            <!--td><img th:src="System.getProperty("user.home")+"/aapa/"+"${pubb.photoPub}" /></td-->
+<<<<<<< HEAD
                            <td><a th:href="@{'/GPA/editCoord?id='+ ${coord.idCoor}}"><button type="submit" class="btn btn-success">Modifier</button></a></td >
                            <td><a onclick="return confirm('Etes vous sur de vouloir supprimer cet élément ?')" th:href="@{'/GPA/DeleteCoor?id='+ ${coord.idCoor}}"><button type="submit" class="btn btn-danger">Supprimer</button></a></td>
+=======
+                           <td><a th:href="@{'/editCoord?id='+ ${coord.idCoor}}"><button type="submit" class="btn btn-success">Modifier</button></a></td >
+                           <td><a onclick="return confirm('Etes vous sur de vouloir supprimer cet élément ?')" th:href="@{'/DeleteCoor?id='+ ${coord.idCoor}}"><button type="submit" class="btn btn-danger">Supprimer</button></a></td>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
 
                        </tr>
                    </tbody>
                </table>
            </div>
+<<<<<<< HEAD
            <a th:href="@{/GPA/addCoord}"><button type="submit" class="btn btn-success">Ajouter un nouveau Membre</button></a>
+=======
+           <a th:href="@{/addCoord}"><button type="submit" class="btn btn-success">Ajouter un nouveau Membre</button></a>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
 
   </body>
 

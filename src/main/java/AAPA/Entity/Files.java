@@ -30,6 +30,8 @@ public class Files {
     private String   observation;
     @OneToMany 
     private List<Childrens> childrens;
+    @OneToMany 
+    private List<Alarm> alarms;
     @OneToOne(optional = true)
     private Beneficiary beneficiary;
     @OneToOne(optional = true)
@@ -93,11 +95,9 @@ public class Files {
    public List<Childrens> getChildrens() {
         return childrens;
     }
-
-    public void setChildrens(List<Childrens> childrens) {
-        this.childrens = childrens;
+   public List<Alarm> getAlarms() {
+        return alarms;
     }
-    
     
     public Long getIdFile (){
     return idFile;
@@ -135,6 +135,15 @@ public class Files {
     
     public void setObservation (String observation){
     this.observation=observation;
+    }
+    
+
+    public void setChildrens(List<Childrens> childrens) {
+        this.childrens = childrens;
+    }
+    
+    public void setAlarms(List<Alarm> alarms) {
+        this.alarms = alarms;
     }
     
 }

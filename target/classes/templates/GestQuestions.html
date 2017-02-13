@@ -6,7 +6,11 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://thymeleaf.org">
     <head>
+<<<<<<< HEAD
         <title> Gestion PA</title>
+=======
+        <title>TODO supply a title</title>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/css/bootstrap.min.css" rel="stylesheet"/>
@@ -23,11 +27,19 @@ and open the template in the editor.
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<<<<<<< HEAD
         <ul class="nav navbar-nav">
           <li><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
           <li class="active"><a th:href="@{/GPA/}">Gestion Page d'Accueil</a></li>
             <li ><a th:href="@{/GPA/}">Gestion Interne</a></li>
               <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li>
+=======
+       <ul class="nav navbar-nav">
+          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li class="active"><a th:href="@{/LesQuestions}">Questions</a></li>
+            <li><a th:href="@{/ListPub}">Publications</a></li>
+              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
 
         </ul>
 
@@ -35,6 +47,7 @@ and open the template in the editor.
         <ul class="nav navbar-nav navbar-right">
 
           <li class="dropdown">
+<<<<<<< HEAD
             <a id="dLabel" data-target="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Plus <span class="caret"></span></a>
             <ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
                 <li><a href="#">Action</a></li>
@@ -44,12 +57,23 @@ and open the template in the editor.
                 <li><a href="#">Separated link</a></li>
             </ul>
 
+=======
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
+<<<<<<< HEAD
 <ul class="nav nav-tabs">
   <li role="presentation"><a th:href="@{/GPA/ListPub}">Pubblications</a></li>
   <li role="presentation" class="active"><a th:href="@{/GPA/LesQuestions}">Questions</a></li>
@@ -57,6 +81,8 @@ and open the template in the editor.
 
 </ul>
 
+=======
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
   <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">QUESTIONS  </div>
@@ -69,8 +95,11 @@ and open the template in the editor.
                 <th>Question</th>
                 <th>Date</th>
                 <th>Mail</th>
+<<<<<<< HEAD
                 <th>Reponse</th>
 
+=======
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
                 <th>Repondre</th>
                 <th>Supprimer</th>
             </tr>
@@ -78,18 +107,30 @@ and open the template in the editor.
 
             <tbody>
 
+<<<<<<< HEAD
 
                 <tr th:each="q : ${ questionss }" >
             <!--div th:if='${q.reponseQuestion == ""}'-->
+=======
+            <tr th:each="q : ${ questionss }">
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
                 <td th:hidden="${q.idQuestion}"></td>
                 <td th:text="${q.authorQuestion}"></td>
                 <td th:text="${q.textQuestion}"></td>
                 <td th:text="${q.dateQuestion}"></td>
                 <td th:text="${q.mailQuestion}"></td>
+<<<<<<< HEAD
                 <td th:text="${q.reponseQuestion}"></td>
                 <td><a th:href="@{'/GPA/Reponse?id='+ ${q.idQuestion}}"><button type="submit" class="btn btn-success">Répondre</button></a></td>
                 <td><a th:href="@{'/GPA/SupprQuest?id='+ ${q.idQuestion}}"><button type="submit" class="btn btn-danger">Supprimer</button></a></td>
             <!--/div-->
+=======
+
+
+
+               <td><a th:href="@{'/Reponse?id='+ ${q.idQuestion}}"><button type="submit" class="btn btn-success">Répondre</button></a></td>
+               <td><a th:href="@{'/SupprQuest?id='+ ${q.idQuestion}}"><button type="submit" class="btn btn-danger">Supprimer</button></a></td>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
             </tr>
             </tbody>
         </table>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head xmlns:th="http://thymeleaf.org">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+  <li th:each="pubb : ${ pubAff }" th:inline="text">
+       <b th:text="${execInfo.now.time}"></b>
+      <span>  Titre :</span>                
+      <span> [[${pubb.titlePub}]]  </span> 
+      <span> Decription :</span>
+      <span>  [[${pubb.descPub}]]  </span> 
+      <span>  [[${pubb.datePub}]]  </span> 
+      <span> <img th:src="${pubb.photoPub}" />
+      <td><a th:href="@{'/deleteEvent?id='+ ${event.idEvent}}"><button type="submit" class="btn btn-danger">Delete</button></a></td>
+
+  </span> 
+  </li>
+     </body>
+</html>
