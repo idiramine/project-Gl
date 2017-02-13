@@ -225,17 +225,17 @@ and open the template in the editor.
  <TH> Date De Debut </TH> 
  <TH> Date Dernier Traitement </TH> 
  <TH> Traiter </TH> 
- <TH> Annuler </TH> 
  <TH> Modifier </TH> 
+ <TH> Annuler </TH> 
   </TR> 
           </thead>
   <TR th:each="d : ${file.alarms}"  th:inline="text"> 
       <form  th:object="${alarm}"
-                th:action="@{'/modifyAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}"
+                th:action="@{'/modifyAlarm?id=' + ${d.idAlarm}}"
                 method="post">
  <TD> [[${d.title}]] <input class="form-control" type="text" th:value="${d.title}" th:field="*{title}"/></TD> 
  <TD> [[${d.periodicite}]] <FORM class="form-control">
-                            <SELECT th:field="*{periodicite}">
+                            <SELECT class="form-control" th:field="*{periodicite}">
                             <OPTION value="Quotidien"> Quotidienne  </OPTION>
                             <OPTION value="Mensuel"> Mensuelle   </OPTION>
                             <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>
@@ -247,11 +247,12 @@ and open the template in the editor.
  <TD> <a th:href="@{'/traiterAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}">
       <input type="button"
           value="Traiter" class="btn btn-success" /> </a> </TD> 
+ <TD> 
+         <input type="submit" value="Modifier" class="btn btn-success"/> </TD> 
  <TD> <a th:href="@{'/deleteAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}">
       <input type="button"
           value="ANNULER" class="btn btn-danger" 
           onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
- <TD> <input type="submit" value="Modifier" class="btn btn-success"/> </TD> 
       </form>
   </TR> 
       </TABLE>  </div>
@@ -261,7 +262,7 @@ and open the template in the editor.
            <input type="hidden" name="id" th:value="${file.idFile}" />
         <div> Titre     <input class="form-control" type="text" th:field="*{title}"/>    </div> 
         <div> Periodicité     <FORM class="form-control">
-                            <SELECT th:field="*{periodicite}">
+                            <SELECT class="form-control" th:field="*{periodicite}">
                             <OPTION value="Quotidien"> Quotidienne  </OPTION>
                             <OPTION value="Mensuel"> Mensuelle   </OPTION>
                             <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>

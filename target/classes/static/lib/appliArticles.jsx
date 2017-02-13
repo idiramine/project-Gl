@@ -14,7 +14,7 @@ class Article extends React.Component {
         <td>{this.props.art.observation}</td>
 
         <span onClick={deleteArticle}>
-          <input type="submit" value="Supp" style={{position: "absolute", left: "500px", color:"white", background:"black"}}/>
+          <input type="submit" value="Supp" class="btn btn-danger" style={{position: "absolute", left: "500px", color:"white", background:"black"}}/>
         </span>
 
 </tr>
@@ -84,6 +84,7 @@ class ArticleApp extends React.Component {
         i => i.description ==
         newart.description);
         ar=Artcls[0];
+        if(ar!=undefined){
         newart.quantity=newart.quantity+ar.quantity;
         superagent
         .put(ar._links.self.href)
@@ -105,6 +106,21 @@ class ArticleApp extends React.Component {
 
 
       }.bind(this));
+    }else {
+
+      superagent
+      .post('/api/articleses') // not HATEOS :(
+      .set('Content-Type', 'application/json')
+      .send(newart)
+      .end( function(err, response) {
+      if (err == null) {
+      this.setState({
+      Articles: [...this.state.Articles, newart]
+      });
+      }
+      }.bind(this));
+
+    }
 
 }
 }.bind(this));
@@ -125,7 +141,6 @@ class ArticleApp extends React.Component {
       a=Artcls[0];
       var f={description,quantity,observation};
       f.quantity=0;
-    alert(a.quantity);
       superagent
       .put(a._links.self.href)
       .send(f)
