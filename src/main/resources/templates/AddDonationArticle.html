@@ -12,7 +12,7 @@ and open the template in the editor.
         <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body xmlns:th="http://www.thymeleaf.org" class="container">
-        <nav class="navbar navbar-inverse">
+       <nav class="navbar navbar-inverse">
         <div class="container-fluid">
         <div class="navbar-header">
 
@@ -20,33 +20,21 @@ and open the template in the editor.
       </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav">
-          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
-          <li><a th:href="@{/LesQuestions}">Questions</a></li>
-            <li ><a th:href="@{/ListPub}">Publications</a></li>
-              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
-          <li class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
-            <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
-              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+         <li><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/GPA/ListPub}">Gestion Page d'Accueil</a></li>
+            <li class="active"><a th:href="@{/gestionfiles}">Gestion Interne</a></li>
+              <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li> 
 
-        </ul>
-
-
-        <ul class="nav navbar-nav navbar-right">
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+  <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+  <li role="presentation"><a th:href="@{/Seedonations}">Gestion Des Dons</a></li>
+  <li role="presentation"><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+
+</ul>  
         
         
          
