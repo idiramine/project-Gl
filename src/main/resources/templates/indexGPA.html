@@ -27,27 +27,32 @@ and open the template in the editor.
 
           <li class="active"><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
           <li><a th:href="@{/GPA/ListPub}">Gestion Page d'Accueil</a></li>
-            <li ><a th:href="@{/GPA/}">Gestion Interne</a></li>
+            <li ><a th:href="@{/gestionfiles}">Gestion Interne</a></li>
               <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li>
-<!--
-          <li class="active"><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
-          <li><a th:href="@{/LesQuestions}">Questions</a></li>
-            <li ><a th:href="@{/ListPub}">Publications</a></li>
-              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+
+              <!--li class="active"><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
             <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
             <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
-              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
--->
-        </ul>  
+              <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li-->
+
+        </ul>
+
+
+        
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-
-
-  <div class="col-md-6">
+      
+      <div class="container">
+  
     <!-- Default panel contents -->
-    <div class="panel-heading">Questions Sans Réponse </div>
-
+    
+    
+      <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Questions Sans Réponse</h3>
+  </div>
+  
     <!-- Table -->
     <table class="table table-hover" >
             <thead>
@@ -80,16 +85,9 @@ and open the template in the editor.
             </tr>
             </tbody>
         </table>
-        <a th:href="@{/GPA/LesQuestions}"><button type="submit" class="btn btn-success">Voir touts les Questions</button></a>
+        <a th:href="@{/GPA/LesQuestions}"><button type="submit" class="btn btn-info" style="weight:100%">Voir touts les Questions</button></a>
 
   </div>
-
-
-
-
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap.js"></script>
-
 
 
       
@@ -121,7 +119,9 @@ and open the template in the editor.
   </div>
 
 </div>
-      
-      
+    </div>
+  
+   
+
     </body>
 </html>
