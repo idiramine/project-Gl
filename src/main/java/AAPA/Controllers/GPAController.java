@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -88,21 +90,24 @@ public class GPAController {
   @Value("${dir.images}")
     private String imageDir;
 
-  @RequestMapping("/")
+  @RequestMapping("/GPA")
 
-    public String edit(Model model) {
-
-             return "indexGPA";
-
+       
+    public String home(Model m1, @Valid questions questionn) {
+        m1.addAttribute("qu", questRep.findAll());
+       
+            return "indexGPA";
+//return "indewGestion";
         }
 
-    @RequestMapping("/LesQuestions")
-    public String home(Model m1, @Valid questions questionn) {
+    @RequestMapping("/GPA/LesQuestions")
+    public String home(Model m1,Model M2, @Valid questions questionn) {
         m1.addAttribute("questionss", questRep.findAll());
+       
         return "GestQuestions";
     }
 
-    @RequestMapping("/addPub")
+    @RequestMapping("/GPA/addPub")
     public String SavePub (Model m2, @Valid pubblications publication , @RequestParam(name ="picture")MultipartFile file) throws Exception{
 
             m2.addAttribute("publication", publication);
@@ -113,42 +118,35 @@ public class GPAController {
             file.transferTo(new File(imageDir +"article "+ publication.getIdPub()));
 
 
-         return "redirect:/ListPub";
+         return "redirect:/GPA/ListPub";
     }
 
-   @RequestMapping("/ListPub")
+   @RequestMapping("/GPA/ListPub")
     public String home(Model m3, @Valid pubblications pub) {
         m3.addAttribute("pubAff", pubRep.findAll());
+       
+       /* Date actuelle = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dat = dateFormat.format(actuelle);
+        pub.setDatePub(dat);*/
+       
         return "ListPub";
 
     }
 
 
-
-      @RequestMapping(value="/DeletePub")
-    public String deletepub(@RequestParam("id") long idPub) {
-
-        pubblications pubu = pubRep.findOne(idPub);
-        pubRep.delete(idPub);
-
-        return "redirect:/ListPub";
-
-    }
-
-
-
-@RequestMapping(value="/SupprQuest")
+@RequestMapping(value="/GPA/SupprQuest")
 public String deleteQuest(@RequestParam("id") long idQuestion) {
 
   questions questtt = questRep.findOne(idQuestion);
   questRep.delete(questtt);
 
-  return "redirect:/LesQuestions";
+  return "redirect:/GPA/LesQuestions";
 
 }
 
 
-  @RequestMapping(value = "/edit", method = RequestMethod.GET)
+  @RequestMapping(value = "/GPA/edit", method = RequestMethod.GET)
         public String edit(@RequestParam("id") long idPub, Model model) {
             pubblications pubbli = pubRep.findOne(idPub);
             model.addAttribute("pubbli",pubbli);
@@ -158,12 +156,12 @@ public String deleteQuest(@RequestParam("id") long idQuestion) {
         }
 
 
-         @RequestMapping(value = "/Reponse", method = RequestMethod.GET)
+         @RequestMapping(value = "/GPA/Reponse", method = RequestMethod.GET)
 
         public String RepQuest(@RequestParam("id") long idQuestion, Model model2, HttpServletRequest request) {
             questions questi = questRep.findOne(idQuestion);
             model2.addAttribute("questi",questi);
-/**********Envoyer le Mail 2*********************/
+/**********Envoyer le Mail 2*********************
 String recipients[]={questi.mailQuestion};
 String str1="Réponse sur votre question sur AAPA.com";
 String str2=questi.reponseQuestion;
@@ -177,7 +175,7 @@ String str3="idiramine13@gmail.com";
       } catch (MessagingException ex) {
           Logger.getLogger(GPAController.class.getName()).log(Level.SEVERE, null, ex);
       }
- /**********Fin Envoyer le Mail 2*********************/
+ **********Fin Envoyer le Mail 2*********************/
 
 
              return "RepondreQuest";
@@ -185,16 +183,16 @@ String str3="idiramine13@gmail.com";
         }
 
 
-@RequestMapping("/saveRep")
+@RequestMapping("/GPA/saveRep")
 public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
 
     m4.addAttribute("question", q);
       questRep.save(q);
- return "redirect:/LesQuestions";
+ return "redirect:/GPA/LesQuestions";
 }
 
 
-        @RequestMapping("/update")
+        @RequestMapping("/GPA/update")
     public String updatePub (Model m3, @Valid pubblications p , @RequestParam(name ="pic")MultipartFile file) throws IOException{
 
             m3.addAttribute("publication", p);
@@ -202,10 +200,20 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
             p.setPhotoPub(file.getOriginalFilename());
             file.transferTo(new File(imageDir +"article "+ p.getIdPub()));
             pubRep.save(p);
-         return "redirect:/ListPub";
+         return "redirect:/GPA/ListPub";
+    }
+    
+    @RequestMapping(value="/GPA/DeletePub")
+    public String deletepub(@RequestParam("id") long idPub) {
+
+        pubblications pubu = pubRep.findOne(idPub);
+        pubRep.delete(idPub);
+
+        return "redirect:/GPA/ListPub";
+
     }
 
-       @RequestMapping(value="/getPhoto", produces=MediaType.IMAGE_JPEG_VALUE)
+       @RequestMapping(value="/GPA/getPhoto", produces=MediaType.IMAGE_JPEG_VALUE)
         @ResponseBody
         public byte[] getPhoto(long id) throws Exception {
 
@@ -215,7 +223,7 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
 
         }
 
-          @RequestMapping("/GestCoor")
+          @RequestMapping("/GPA/GestCoor")
     public String coord(Model m4, @Valid coordonnees cor, @Valid infos inf) {
         m4.addAttribute("coorAff",cordRepo.findAll());
         m4.addAttribute("infAff", infRep.findAll());
@@ -223,7 +231,7 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
 
     }
 
-     @RequestMapping(value="/getLogo", produces=MediaType.IMAGE_JPEG_VALUE)
+     @RequestMapping(value="/GPA/getLogo", produces=MediaType.IMAGE_JPEG_VALUE)
         @ResponseBody
         public byte[] getLogo(long idLog) throws Exception {
 
@@ -231,7 +239,7 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
              return IOUtils.toByteArray(new FileInputStream(f));
 
         }
-         @RequestMapping(value = "/editInfos", method = RequestMethod.GET)
+         @RequestMapping(value = "/GPA/editInfos", method = RequestMethod.GET)
         public String editInfos(@RequestParam("id") long idInf, Model model2) {
             infos inff = infRep.findOne(idInf);
             model2.addAttribute("inff",inff);
@@ -239,7 +247,7 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
              return "UpdateInfos";
         }
         
-               @RequestMapping(value = "/editCoord", method = RequestMethod.GET)
+               @RequestMapping(value = "/GPA/editCoord", method = RequestMethod.GET)
         public String editCoord(@RequestParam("id") long idCoord, Model model2) {
             coordonnees corr = cordRepo.findOne(idCoord);
             model2.addAttribute("corr",corr);
@@ -247,16 +255,16 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
              return "UpdateCoord";
 
         }
-        @RequestMapping("/updateCoord")
+        @RequestMapping("/GPA/updateCoord")
     public String updateCoord (Model m3, @Valid coordonnees c ) throws IOException{
 
             m3.addAttribute("info", c);
 
             cordRepo.save(c);
-         return "redirect:/GestCoor";
+         return "redirect:/GPA/GestCoor";
     }
         
-              @RequestMapping("/updateInfos")
+              @RequestMapping("/GPA/updateInfos")
     public String updateInfos (Model m3, @Valid infos i , @RequestParam(name ="log")MultipartFile file) throws IOException{
 
             m3.addAttribute("info", i);
@@ -264,28 +272,28 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
             i.setLogo(file.getOriginalFilename());
             file.transferTo(new File(imageDir +"Logo"));
             infRep.save(i);
-         return "redirect:/GestCoor";
+         return "redirect:/GPA/GestCoor";
     }
     
-    @RequestMapping(value="/DeleteCoor")
+    @RequestMapping(value="/GPA/DeleteCoor")
 public String deleteCoord(@RequestParam("id") long idCoor) {
 
   coordonnees corrr = cordRepo.findOne(idCoor);
   cordRepo.delete(corrr);
 
-  return "redirect:/GestCoor";
+  return "redirect:/GPA/GestCoor";
 
 }
-@RequestMapping("/saveCoord")
+@RequestMapping("/GPA/saveCoord")
     public String SaveCoord (Model m2, @Valid coordonnees coord) throws Exception{
 
             m2.addAttribute("coord", coord);
 
             cordRepo.save(coord);
 
-         return "redirect:/GestCoor";
+         return "redirect:/GPA/GestCoor";
     }
-@RequestMapping("/addCoord")
+@RequestMapping("/GPA/addCoord")
     public String addCoord (Model m2, @Valid coordonnees coord) throws Exception{
 
             m2.addAttribute("coord", coord);

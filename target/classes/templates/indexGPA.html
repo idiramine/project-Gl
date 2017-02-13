@@ -24,6 +24,12 @@ and open the template in the editor.
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+<<<<<<< HEAD
+          <li class="active"><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/GPA/ListPub}">Gestion Page d'Accueil</a></li>
+            <li ><a th:href="@{/GPA/}">Gestion Interne</a></li>
+              <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li>
+=======
           <li class="active"><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
           <li><a th:href="@{/LesQuestions}">Questions</a></li>
             <li ><a th:href="@{/ListPub}">Publications</a></li>
@@ -31,12 +37,23 @@ and open the template in the editor.
             <li><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
             <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
               <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
 
         </ul>
+
 
         <ul class="nav navbar-nav navbar-right">
 
           <li class="dropdown">
+<<<<<<< HEAD
+            <a id="dLabel" data-target="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Plus <span class="caret"></span></a>
+            <ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+=======
             <a href="#" class="dropdown-toggle" 
                data-toggle="dropdown" role="button" aria-haspopup="true" 
                aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -46,13 +63,64 @@ and open the template in the editor.
               <li><a href="#">Something else here</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Separated link</a></li>
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
             </ul>
+
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
+<<<<<<< HEAD
+  <div class="col-md-6">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Questions Sans Réponse </div>
+
+    <!-- Table -->
+    <table class="table table-hover" >
+            <thead>
+            <tr>
+                <th>Auteur</th>
+                <th>Question</th>
+                <th>Date</th>
+                <th>Mail</th>
+
+
+                <th>Repondre</th>
+                <th>Supprimer</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+
+                <tr th:each="ques : ${ qu }" >
+            <div th:if='${ques.reponseQuestion == ""}'>
+                <td th:hidden="${ques.idQuestion}"></td>
+                <td th:text="${ques.authorQuestion}"></td>
+                <td th:text="${ques.textQuestion}"></td>
+                <td th:text="${ques.dateQuestion}"></td>
+                <td th:text="${ques.mailQuestion}"></td>
+
+                <td><a th:href="@{'/GPA/Reponse?id='+ ${ques.idQuestion}}"><button type="submit" class="btn btn-success">Répondre</button></a></td>
+                <td><a th:href="@{'/GPA/SupprQuest?id='+ ${ques.idQuestion}}"><button type="submit" class="btn btn-danger">Supprimer</button></a></td>
+            </div>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/GPA/LesQuestions}"><button type="submit" class="btn btn-success">Voir touts les Questions</button></a>
+
+  </div>
+
+
+
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+
+=======
       
       <div class="panel panel-primary">
   <div class="panel-heading">
@@ -85,5 +153,6 @@ and open the template in the editor.
       
       
 
+>>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
     </body>
 </html>

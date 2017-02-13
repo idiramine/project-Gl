@@ -6,13 +6,13 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://thymeleaf.org">
     <head>
-        <title>MAJ Pubblication</title>
+        <title> Gestion PA</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/css/bootstrap.min.css" rel="stylesheet"/>
-
     </head>
-    <body class="container" >
+    <body class="container">
+
       <!--nav class="navbar navbar-inverse"-->
         <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -23,11 +23,11 @@ and open the template in the editor.
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <ul class="nav navbar-nav">
-          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
-          <li class="active"><a th:href="@{/LesQuestions}">Questions</a></li>
-            <li><a th:href="@{/ListPub}">Publications</a></li>
-              <li><a th:href="@{/GestCoor}">Coordonnées</a></li>
+        <ul class="nav navbar-nav">
+          <li><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li class="active"><a th:href="@{/GPA/}">Gestion Page d'Accueil</a></li>
+            <li ><a th:href="@{/GPA/}">Gestion Interne</a></li>
+              <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li>
 
         </ul>
 
@@ -35,19 +35,28 @@ and open the template in the editor.
         <ul class="nav navbar-nav navbar-right">
 
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+            <a id="dLabel" data-target="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Plus <span class="caret"></span></a>
+            <ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
             </ul>
+
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a th:href="@{/GPA/ListPub}">Pubblications</a></li>
+  <li role="presentation" class="active"><a th:href="@{/GPA/LesQuestions}">Questions</a></li>
+  <li role="presentation"><a th:href="@{/GPA/GestCoor}">Coordonnees</a></li>
+
+</ul>
+
 
       <div class="panel panel-primary">
     <div class="panel-heading">
@@ -56,7 +65,7 @@ and open the template in the editor.
     <div class="panel-body">
 
       <div>
-        <form th:action="@{/saveRep}" th:object="${questi}" method="POST" enctype="multipart/form-data">
+        <form th:action="@{/GPA/saveRep}" th:object="${questi}" method="POST" enctype="multipart/form-data">
               <div class="form-group">
 
                     <input type="hidden" th:field="*{idQuestion}" /><br />

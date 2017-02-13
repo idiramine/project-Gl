@@ -29,7 +29,8 @@ public class pubblications {
    private Long idPub;
    private String titlePub;
    private String descPub;
-   private Date datePub;
+  
+   private String datePub;
   // private byte[] photoPub;
    private String photoPub;
     @OneToMany
@@ -59,11 +60,11 @@ public class pubblications {
         this.descPub = descPub;
     }
 
-    public Date getDatePub() {
+    public String getDatePub() {
         return datePub;
     }
 
-    public void setDatePub(Date datePub) {
+    public void setDatePub(String datePub) {
         this.datePub = datePub;
     }
 
@@ -86,7 +87,7 @@ public class pubblications {
     public pubblications() {
     }
 
-    public pubblications(String titlePub, String descPub, Date datePub, String photoPub, List<commentaires> CommPub) {
+    public pubblications(String titlePub, String descPub, String datePub, String photoPub, List<commentaires> CommPub) {
         this.titlePub = titlePub;
         this.descPub = descPub;
         this.datePub = datePub;

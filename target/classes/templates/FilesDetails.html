@@ -27,12 +27,21 @@ and open the template in the editor.
           <li class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
             <li><a th:href="@{/Seedonations}">Liste Des Dons</a></li>
               <li><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+<<<<<<< HEAD
 
         </ul>
 
 
         <ul class="nav navbar-nav navbar-right">
 
+=======
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+>>>>>>> 8eda09494665490d5a13c5d43a3e86cfcb929498
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -231,11 +240,19 @@ and open the template in the editor.
           </thead>
   <TR th:each="d : ${file.alarms}"  th:inline="text"> 
       <form  th:object="${alarm}"
+<<<<<<< HEAD
                 th:action="@{'/modifyAlarm?id=' + ${d.idAlarm}}"
                 method="post">
  <TD> [[${d.title}]] <input class="form-control" type="text" th:value="${d.title}" th:field="*{title}"/></TD> 
  <TD> [[${d.periodicite}]] <FORM class="form-control">
                             <SELECT class="form-control" th:field="*{periodicite}">
+=======
+                th:action="@{'/modifyAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}"
+                method="post">
+ <TD> [[${d.title}]] <input class="form-control" type="text" th:value="${d.title}" th:field="*{title}"/></TD> 
+ <TD> [[${d.periodicite}]] <FORM class="form-control">
+                            <SELECT th:field="*{periodicite}">
+>>>>>>> 8eda09494665490d5a13c5d43a3e86cfcb929498
                             <OPTION value="Quotidien"> Quotidienne  </OPTION>
                             <OPTION value="Mensuel"> Mensuelle   </OPTION>
                             <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>
@@ -247,12 +264,19 @@ and open the template in the editor.
  <TD> <a th:href="@{'/traiterAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}">
       <input type="button"
           value="Traiter" class="btn btn-success" /> </a> </TD> 
+<<<<<<< HEAD
  <TD> 
          <input type="submit" value="Modifier" class="btn btn-success"/> </TD> 
+=======
+>>>>>>> 8eda09494665490d5a13c5d43a3e86cfcb929498
  <TD> <a th:href="@{'/deleteAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}">
       <input type="button"
           value="ANNULER" class="btn btn-danger" 
           onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
+<<<<<<< HEAD
+=======
+ <TD> <input type="submit" value="Modifier" class="btn btn-success"/> </TD> 
+>>>>>>> 8eda09494665490d5a13c5d43a3e86cfcb929498
       </form>
   </TR> 
       </TABLE>  </div>
@@ -262,7 +286,11 @@ and open the template in the editor.
            <input type="hidden" name="id" th:value="${file.idFile}" />
         <div> Titre     <input class="form-control" type="text" th:field="*{title}"/>    </div> 
         <div> Periodicité     <FORM class="form-control">
+<<<<<<< HEAD
                             <SELECT class="form-control" th:field="*{periodicite}">
+=======
+                            <SELECT th:field="*{periodicite}">
+>>>>>>> 8eda09494665490d5a13c5d43a3e86cfcb929498
                             <OPTION value="Quotidien"> Quotidienne  </OPTION>
                             <OPTION value="Mensuel"> Mensuelle   </OPTION>
                             <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>
