@@ -195,7 +195,7 @@ and open the template in the editor.
  <TH> Quantity </TH> 
  <TH> Date </TH> 
  <TH> Observation </TH> 
-  </TR> 
+  </TR>
           </thead>
   <TR th:each="d : ${dons}"  th:inline="text"> 
  <TD> [[${d.file.fileName}]] </TD> 
@@ -230,10 +230,20 @@ and open the template in the editor.
   </TR> 
           </thead>
   <TR th:each="d : ${file.alarms}"  th:inline="text"> 
- <TD> [[${d.title}]] </TD> 
- <TD> [[${d.periodicite}]] </TD> 
- <TD> [[${d.dateDebut}]] </TD> 
- <TD> [[${d.dateDernierTraitement}]] </TD> 
+      <form  th:object="${alarm}"
+                th:action="@{'/modifyAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}"
+                method="post">
+ <TD> [[${d.title}]] <input class="form-control" type="text" th:value="${d.title}" th:field="*{title}"/></TD> 
+ <TD> [[${d.periodicite}]] <FORM class="form-control">
+                            <SELECT th:field="*{periodicite}">
+                            <OPTION value="Quotidien"> Quotidienne  </OPTION>
+                            <OPTION value="Mensuel"> Mensuelle   </OPTION>
+                            <OPTION value="Hebdomadaire"> Hebdomadaire   </OPTION>
+                            <OPTION value="Aucune"> Aucune  </OPTION>
+                            </SELECT>
+                        </FORM></TD> 
+ <TD> [[${d.dateDebut}]] <input class="form-control" type="date" th:field="*{dateDebut}"  /> </TD> 
+ <TD> [[${d.dateDernierTraitement}]] <input class="form-control" type="date" th:field="*{dateDernierTraitement}"  /></TD> 
  <TD> <a th:href="@{'/traiterAlarm'(id=  ${file.idFile} , idal= ${d.idAlarm})}">
       <input type="button"
           value="Traiter" class="btn btn-success" /> </a> </TD> 
@@ -242,7 +252,7 @@ and open the template in the editor.
           value="ANNULER" class="btn btn-danger" 
           onclick="return confirm('Are you sure of your choice ?')"/> </a> </TD> 
  <TD> <input type="submit" value="Modifier" class="btn btn-success"/> </TD> 
-  
+      </form>
   </TR> 
       </TABLE>  </div>
         <div class="panel-heading">Ajoutter Une Alarme</div>
