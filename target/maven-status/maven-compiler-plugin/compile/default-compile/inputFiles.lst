@@ -1,26 +1,29 @@
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\CompagnonRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\ArticlesRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\infosRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\FilesRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\infos.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Controllers\GPAController.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Childrens.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\AapaApplication.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Files.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\ChildrensRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Controllers\GIController.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Alarm.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\commentaires.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Compagnon.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\Controllers\FirstController.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Beneficiary.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\commentairesRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\AlarmRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\questionsRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\BeneficiaryRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\pubblicationsRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Donations.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\pubblications.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Articles.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\Repo\DonationsRepo.java
-C:\Users\amine\Documents\NetBeansProjects\projet intégré\project-Gl\src\main\java\AAPA\Entity\questions.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Controllers\SendMailUsingAuthentication.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Articles.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\AapaApplication.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\FilesRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Controllers\GPAController.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\Controllers\FirstController.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\commentairesRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\DonationsRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\ChildrensRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Beneficiary.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\coordonnees.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\pubblications.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\questions.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\infos.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\CompagnonRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\questionsRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\ArticlesRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\pubblicationsRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Controllers\GIController.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Childrens.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Alarm.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Donations.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Compagnon.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\BeneficiaryRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\commentaires.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\coordRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\infosRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Repo\AlarmRepo.java
+C:\Users\youssef\Documents\NetBeansProjects\AAPA2\src\main\java\AAPA\Entity\Files.java
