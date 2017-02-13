@@ -6,7 +6,6 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://thymeleaf.org">
     <head>
-<<<<<<< HEAD
         <title> Gestion PA</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,15 +13,6 @@ and open the template in the editor.
     </head>
     <body class="container">
 
-=======
-        <title>Ajouter Membre</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
-
-    </head>
-    <body class="container" >
->>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
       <!--nav class="navbar navbar-inverse"-->
         <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -33,19 +23,11 @@ and open the template in the editor.
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<<<<<<< HEAD
         <ul class="nav navbar-nav">
           <li><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
-          <li class="active"><a th:href="@{/GPA/}">Gestion Page d'Accueil</a></li>
-            <li ><a th:href="@{/GPA/}">Gestion Interne</a></li>
-              <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li>
-=======
-       <ul class="nav navbar-nav">
-          <li ><a th:href="@{/}">Accueil<span class="sr-only">(current)</span></a></li>
-          <li><a th:href="@{/LesQuestions}">Questions</a></li>
-            <li><a th:href="@{/ListPub}">Publications</a></li>
-              <li class="active"><a th:href="@{/GestCoor}">Coordonnées</a></li>
->>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
+          <li class="active"><a th:href="@{/GPA/ListPub}">Gestion Page d'Accueil</a></li>
+            <li><a th:href="@{/gestionfiles}">Gestion Interne</a></li>
+              <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li> 
 
         </ul>
 
@@ -53,7 +35,6 @@ and open the template in the editor.
         <ul class="nav navbar-nav navbar-right">
 
           <li class="dropdown">
-<<<<<<< HEAD
             <a id="dLabel" data-target="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Plus <span class="caret"></span></a>
             <ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
                 <li><a href="#">Action</a></li>
@@ -63,23 +44,12 @@ and open the template in the editor.
                 <li><a href="#">Separated link</a></li>
             </ul>
 
-=======
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plus<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
->>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
-<<<<<<< HEAD
 <ul class="nav nav-tabs">
   <li role="presentation"><a th:href="@{/GPA/ListPub}">Pubblications</a></li>
   <li role="presentation"><a th:href="@{/GPA/LesQuestions}">Questions</a></li>
@@ -87,8 +57,6 @@ and open the template in the editor.
 
 </ul>
 
-=======
->>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
       <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title"> Ajouter un nouveau Membre</h3>
@@ -96,29 +64,17 @@ and open the template in the editor.
     <div class="panel-body">
 
       <div>
-<<<<<<< HEAD
         <form th:action="@{/GPA/saveCoord}" th:object="${coord}" method="POST" enctype="multipart/form-data">
               <div class="form-group">
 
                     <input type="hidden" th:field="*{idCoor}" /><br />
 
-=======
-        <form th:action="@{/saveCoord}" th:object="${coord}" method="POST" enctype="multipart/form-data">
-              <div class="form-group">
-
-                    <input type="hidden" th:field="*{idCoor}" /><br />
-                    
->>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
                     <input class="form-control" type="text"  th:field="*{nomCoor}" placeholder=" Nom..." />  <br />
                     <input class="form-control" type="text"  th:field="*{prenomCoor}"  placeholder="Prenom..."/><br />
                     <input class="form-control" type="text"  th:field="*{telCoor}" placeholder="Telephone..."/><br />
                     <input class="form-control" type="text"  th:field="*{mailCoor}" placeholder="E-Mail..." /><br />
                     <input class="form-control" type="text"  th:field="*{fonctionCoor}" placeholder="Fonction..." />  <br />
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> 0dea6504fff0d7a091ca631aee4ece399058331b
 
 
                     <input type="submit" value="OK"/>
