@@ -33,6 +33,7 @@ and open the template in the editor.
   <li role="presentation" class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
   <li role="presentation"><a th:href="@{/Seedonations}">Gestion Des Dons</a></li>
   <li role="presentation"><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+  <li role="presentation"><a th:href="@{/gestioncomptes}">Gestion Des Comptes</a></li>
 
 </ul>  
         
@@ -47,17 +48,17 @@ and open the template in the editor.
          <TABLE class="table table-hover"> 
    
                 <TR> 
-                    <TD> Qantity  </TD>
+                    <TD> Qantité  </TD>
                     <TD> <input type="number" min="1"
                                 th:field="*{donationQuantity}"  />  </TD> 
                 </TR>
                 <TR> 
-                    <TD> Date  </TD> 
+                    <TD> Date Du Don </TD> 
                     <TD> <input type="date"  
                                 th:field="*{donationDate}"  />  </TD> 
                 </TR>
                 <TR> 
-                    <TD> Observation  </TD> 
+                    <TD> Observation Sur Le Don </TD> 
                     <TD> <input type="text" th:field="*{observation}"  />  </TD> 
                 </TR>
                 <TR> 

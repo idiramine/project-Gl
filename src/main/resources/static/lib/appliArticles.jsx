@@ -1,4 +1,5 @@
 
+
 class Article extends React.Component {
   render() {
 
@@ -8,13 +9,11 @@ class Article extends React.Component {
       ar.quantity,ar.observation);}
       return (<tr>
         <td>{this.props.art.description}</td>
-        <td></td>
         <td>{this.props.art.quantity}</td>
-        <td></td>
         <td>{this.props.art.observation}</td>
 
         <span onClick={deleteArticle}>
-          <input type="submit" value="Supp" class="btn btn-danger" style={{position: "absolute", left: "500px", color:"white", background:"black"}}/>
+          <input type="submit" value="Supp" className="btn btn-danger" />
         </span>
 
 </tr>
@@ -36,10 +35,25 @@ class ArticleNew extends React.Component {
     this.refs.ObservationInput.value = "";
     }
     return (<form>
-    <input type="text" placeholder="Description" ref="DescriptionInput"/><br/>
-    <input type="text" placeholder="Quantity" ref="QuantityInput"/><br/>
-    <input type="text" placeholder="Observation" ref="ObservationInput"/><br/>
-    <input type="submit" value="Add" onClick={addArticle}/>
+      <div className="panel panel-primary">
+<div className="panel-heading">
+  <h3 className="panel-title"> Ajouter Un Article</h3>
+</div>
+<div className="panel-body">
+  <div className="form-group" >
+      <div className="panel panel-default">
+          <div className="panel-heading">Informations Sur L'Article</div></div>
+          <div>Description
+    <input className="form-control" type="text"  ref="DescriptionInput"/></div>
+    <div>Quantity
+    <input className="form-control" type="number" min="0" ref="QuantityInput"/></div>
+    <div>Observation
+    <input className="form-control" type="text"  ref="ObservationInput"/></div>
+    <input type="submit" value="Add" className="btn btn-success" onClick={addArticle}/>
+    </div>
+</div>
+
+</div>
     </form>)
 
     }
@@ -173,24 +187,47 @@ var lesitems = (this.state.Articles.filter(i => i.quantity!=0).map(listArticles=
 
 
       return (<div>
-        <h1 style={{background:"red", color:"blue"}}> {this.props.titre} </h1>
-        <h2> there is {this.state.Articles.length} Articles  </h2>
-          <h3 style={{color:"blue"}}> Adding Articles
-             <ArticleNew onAdd={ this.addArticle.bind(this) } />
-          </h3>
+        <nav className="navbar navbar-inverse">
+        <div className="container-fluid">
+        <div className="navbar-header">
 
-        <table>
+        <a className="navbar-brand" href="#">AAPA</a>
+        </div>
+        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul className="nav navbar-nav">
+         <li><a href="/GPA/">Accueil<span className="sr-only">(current)</span></a></li>
+          <li><a href="/GPA/ListPub">Gestion Page d'Accueil</a></li>
+            <li className="active"><a href="/gestionfiles">Gestion Interne</a></li>
+              <li><a href="/GPA">Gestion Reseau Social</a></li>
+
+        </ul>
+        </div>
+        </div>
+        </nav>
+        <ul className="nav nav-tabs">
+        <li role="presentation"><a href="/gestionfiles">Gestion Des Dossiers</a></li>
+        <li role="presentation"><a href="/Seedonations">Gestion Des Dons</a></li>
+        <li role="presentation" className="active"><a href="gestionstock">Gestion Du Stock</a></li>
+        <li role="presentation"><a href="/gestioncomptes">Gestion Des Comptes</a></li>
+
+        </ul>
+
+
+             <ArticleNew onAdd={ this.addArticle.bind(this) } />
+
+
+          <div className="panel panel-default">
+              <div className="panel-heading">Articles</div>
+        <table className="table table-hover">
            <tr>
               <th>Description</th>
-              <th>--------------------</th>
               <th>Quantity</th>
-              <th>--------------------</th>
               <th>Observation</th>
               <th></th>
            </tr>
            {lesitems}
         </table>
-
+            </div>
 
 
 </div>

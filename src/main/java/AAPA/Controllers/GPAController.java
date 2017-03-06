@@ -6,6 +6,8 @@
 package AAPA.Controllers;
 
 
+import AAPA.Entity.Alarm;
+import AAPA.Entity.Repo.AlarmRepo;
 import AAPA.Entity.Repo.commentairesRepo;
 import AAPA.Entity.Repo.coordRepo;
 import AAPA.Entity.Repo.infosRepo;
@@ -86,6 +88,9 @@ public class GPAController {
 
     @Inject
     questionsRepo questRep;
+    
+    @Inject
+    AlarmRepo als;
 
   @Value("${dir.images}")
     private String imageDir;
@@ -95,6 +100,29 @@ public class GPAController {
        
     public String home(Model m1, @Valid questions questionn) {
         m1.addAttribute("qu", questRep.findAll());
+        List <Alarm> alarms= als.findAll();
+        List <Alarm> alarm= new ArrayList<>();
+        
+        for(int i=0;i<alarms.size();i++){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+            int dif= (Integer.parseInt(dateFormat.format(date).toString().substring(0, 4))*365+
+                    Integer.parseInt(dateFormat.format(date).toString().substring(5, 7))*30+
+                    Integer.parseInt(dateFormat.format(date).toString().substring(8, 10)))-
+                    (Integer.parseInt(alarms.get(i).getdateDernierTraitement().substring(0, 4))*365+
+                    Integer.parseInt(alarms.get(i).getdateDernierTraitement().substring(5, 7))*30+
+                    Integer.parseInt(alarms.get(i).getdateDernierTraitement().substring(8, 10)));
+            
+            if(alarms.get(i).getperiodicite().equals("Quotidienne")){
+                if(dif>0){ alarm.add(alarms.get(i));}
+        }else{
+            if(alarms.get(i).getperiodicite().equals("Hebdomadaire")){
+                if(dif>=7){ alarm.add(alarms.get(i));}
+        }else{
+            if(alarms.get(i).getperiodicite().equals("Mensuelle")){
+                if(dif>=30){ alarm.add(alarms.get(i));}
+        }}}}
+        m1.addAttribute("alarms",alarm);
        
             return "indexGPA";
 //return "indewGestion";

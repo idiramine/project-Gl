@@ -9,6 +9,10 @@ and open the template in the editor.
         <title>GESTIONS DES FICHIERS</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="static/lib/react.js">  </script>
+        <script src="static/lib/react-dom.js">  </script>
+        <script src="static/lib/babel-browser.js">  </script>
+        <script src="static/lib/superagent.js">  </script>
         <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     </head>
     <body class="container">
@@ -33,10 +37,69 @@ and open the template in the editor.
   <li role="presentation" class="active"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
   <li role="presentation"><a th:href="@{/Seedonations}">Gestion Des Dons</a></li>
   <li role="presentation"><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+  <li role="presentation"><a th:href="@{/gestioncomptes}">Gestion Des Comptes</a></li>
 
 </ul> 
      
-    
+    <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"> Ajouter un nouveau Dossier</h3>
+  </div>
+  <div class="panel-body">
+    <form enctype="multipart/form-data"  th:object="${file}" th:action="@{/addfiles}" method="post">  
+    <table class="table" border="2">
+        <th><div class="panel panel-default">
+            <div class="panel-heading">Informations Du Dossier</div></div></th>
+            
+        <th><div class="panel panel-default">
+            <div class="panel-heading">Informations Du Beneficiare Principale</div></div></th>
+            
+        <tr>
+            <td>
+            <div> Nom Du Dossier     <input class="form-control" type="text" th:field="*{fileName}"  placeholder="Entrer un nom du dossier"  />    </div> 
+            <div> Date D'Enregistrement     <input class="form-control" type="date" th:field="*{fileDate}" placeholder="Entrer une date " />    </div>
+            <div> Adresse       <input class="form-control" type="text" th:field="*{adress}" placeholder="Entrer une date "  />      </div>
+            <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
+            <div>  <input class="form-control" type="hidden" /></div>
+            <input type="submit" value="Ajouter" class="btn btn-success"/>
+            </td>
+            
+            <td>
+                <form  th:field="*{beneficiary}" th:object="${benef}" th:action="@{/addfiles}" method="post">
+                <div> Nom Du Beneficiare Principale     <input class="form-control" type="text" th:field="*{beneficiaryName}"  />    </div> 
+                <div> Prénom Du Beneficiare Principale     <input class="form-control" type="text" th:field="*{beneficiaryFirstName}"  />    </div> 
+                <div> Date De Naissance Du Beneficiare Principale     <input class="form-control" type="date" th:field="*{beneficiaryDateOfBirth}"  />    </div>
+                <div> Lieu De Naissance Du Beneficiare Principale    <input class="form-control" type="text" th:field="*{beneficiaryPlaceOfBirth}"  />    </div>
+                <div> Situation Du Beneficiare Principale      <input class="form-control" type="text" th:field="*{beneficiarySituation}"  />      </div>
+                <div> Observation Sur Le Beneficiare Principale <input class="form-control" type="text" th:field="*{observation}"  /> </div>
+                
+                </form>
+                
+            </td>
+        </tr>         
+        
+    </table>
+      </form> 
+  </div>
+  </div>
+            
+            <div class="form-group" >
+            
+            
+            
+            
+                 
+            
+            </div>
+        
+        
+        
+        
+        
+        
+        <!--div id="iddiv">mon div test </div>
+      
+        <script src="static/lib/RechercheDossiers.jsx" type="text/babel">         </script-->
             
         <div class="panel panel-default">
             <div class="panel-heading">Dossiers</div>
@@ -52,49 +115,17 @@ and open the template in the editor.
           <tbody>
           <TR th:each="f : ${filescall}"  th:inline="text"> 
               <TD> [[${f.fileName}]]  </TD> 
-              <TD> <a th:href="@{'/seefiles/' + ${f.idFile}}">(See)</a> </TD> 
+              <TD> <a th:href="@{'/seefiles/' + ${f.idFile}}">(VOIR)</a> </TD> 
               <TD> <a th:href="@{'/del-file?id=' + ${f.idFile}}">
-                <input type="submit" class="btn btn-danger" value="Del" onclick="return confirm('Supprimer ce dossier supprimera le benificiare ainsi que le conjoit et les enfants, \n\  cela supprimera aussi les dons concernant ce dossier.\n\ \n\ êtes vous sur de vouloir continuer?')"/>
+                <input type="submit" class="btn btn-danger" value="Supp" onclick="return confirm('Supprimer ce dossier supprimera le benificiare ainsi que le conjoit et les enfants, \n\  cela supprimera aussi les dons concernant ce dossier.\n\ \n\ êtes vous sur de vouloir continuer?')"/>
                     </a> </TD> 
-              <TD> <a th:href="@{'/makeDonation?id=' + ${f.idFile}}">(don)</a> </TD> 
+              <TD> <a th:href="@{'/makeDonation?id=' + ${f.idFile}}">(Don)</a> </TD> 
           </TR>
           </tbody>
         </TABLE>
             </div>
             
-            
-            
-            
-        <div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"> Ajouter un nouveau Dossier</h3>
-  </div>
-  <div class="panel-body">
-        <form enctype="multipart/form-data"  th:object="${file}" th:action="@{/addfiles}" method="post">
-            <div class="form-group" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">Informations Du Dossier</div></div>
-            <div> File Name     <input class="form-control" type="text" th:field="*{fileName}"  placeholder="Entrer un nom du dossier"  />    </div> 
-        <div> File Date     <input class="form-control" type="date" th:field="*{fileDate}" placeholder="Entrer une date " />    </div>
-        <div> Adress       <input class="form-control" type="text" th:field="*{adress}" placeholder="Entrer une date "  />      </div>
-        <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
         
-        <div class="panel panel-default">
-            <div class="panel-heading">Informations Du Beneficiare</div></div>
-       <form  th:field="*{beneficiary}" th:object="${benef}" th:action="@{/addfiles}" method="post">
-        <div> beneficiary Name     <input class="form-control" type="text" th:field="*{beneficiaryName}"  />    </div> 
-        <div> beneficiary First Name     <input class="form-control" type="text" th:field="*{beneficiaryFirstName}"  />    </div> 
-        <div> beneficiary Date Of Birth     <input class="form-control" type="date" th:field="*{beneficiaryDateOfBirth}"  />    </div>
-        <div> beneficiary Place Of Birth     <input class="form-control" type="text" th:field="*{beneficiaryPlaceOfBirth}"  />    </div>
-        <div> beneficiary Situation       <input class="form-control" type="text" th:field="*{beneficiarySituation}"  />      </div>
-        <div> Observation  <input class="form-control" type="text" th:field="*{observation}"  /> </div>
-       <input type="submit" value="Ajouter" class="btn btn-success"/>
-       </form> 
-            </div>
-       </form> 
-      </div>
-
-  </div>
     </body>
 </html>
 

@@ -33,6 +33,7 @@ and open the template in the editor.
   <li role="presentation"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
   <li role="presentation" class="active"><a th:href="@{/Seedonations}">Gestion Des Dons</a></li>
   <li role="presentation"><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+  <li role="presentation"><a th:href="@{/gestioncomptes}">Gestion Des Comptes</a></li>
 
 </ul> 
         <div class="panel panel-primary">
@@ -44,17 +45,17 @@ and open the template in the editor.
          <TABLE class="table table-hover"> 
    
                 <TR> 
-                    <TD> Qantity  </TD>
+                    <TD> Qantité  </TD>
                     <TD> <input type="number" min="1"
                                 th:field="*{donationQuantity}"  />  </TD> 
                 </TR>
                 <TR> 
-                    <TD> Date  </TD> 
+                    <TD> Date Du Don  </TD> 
                     <TD> <input type="date"  
                                 th:field="*{donationDate}"  />  </TD> 
                 </TR>
                 <TR> 
-                    <TD> Observation  </TD> 
+                    <TD> Observation Sur Le Don  </TD> 
                     <TD> <input type="text" th:field="*{observation}"  />  </TD> 
                 </TR>
                 <TR> 
@@ -81,7 +82,7 @@ and open the template in the editor.
                 <input type="submit" class="btn btn-success" value="Confirmer"/>
         </form> 
   
-        <TABLE border="2" class="table table-hover"> 
+        <TABLE border="2" class="table"> 
             <TR> 
                     <TH class="panel-heading"> Liste des Articles Disponibles  </TH>
                     <TH class="panel-heading"> Liste des Dossiers   </TH> 
@@ -129,11 +130,11 @@ and open the template in the editor.
         <TABLE class="table table-hover"> 
             <thead>
   <TR> 
- <TH> Donation file name </TH> 
- <TH> Donation article </TH> 
- <TH> Quantity </TH> 
- <TH> Date </TH> 
- <TH> Observation </TH> 
+ <TH> Nom Du Dossier </TH> 
+ <TH> Article Du Don </TH> 
+ <TH> Quantité </TH> 
+ <TH> Date Du Don</TH> 
+ <TH> Observation Sur Le Don</TH> 
   </TR> </thead>
   <TR th:each="d : ${dnscall}"  th:inline="text"> 
  <TD> [[${d.file.fileName}]] </TD> 
