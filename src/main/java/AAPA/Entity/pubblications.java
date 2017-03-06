@@ -32,10 +32,22 @@ public class pubblications {
   
    private String datePub;
   // private byte[] photoPub;
-   private String photoPub;
+ //  private String photoPub;
     @OneToMany
    private List<commentaires> CommPub;
+//    @OneToMany
+//    private List<AlbumPhoto> albPhoto;
+//
+//    public List<AlbumPhoto> getAlbPhoto() {
+//        return albPhoto;
+//    }
+//
+//    public void setAlbPhoto(List<AlbumPhoto> albPhoto) {
+//        this.albPhoto = albPhoto;
+//    }
 
+    
+    
     public Long getIdPub() {
         return idPub;
     }
@@ -68,13 +80,13 @@ public class pubblications {
         this.datePub = datePub;
     }
 
-    public String getPhotoPub() {
-        return photoPub;
-    }
-
-    public void setPhotoPub(String photoPub) {
-        this.photoPub = photoPub;
-    }
+//    public String getPhotoPub() {
+//        return photoPub;
+//    }
+//
+//    public void setPhotoPub(String photoPub) {
+//        this.photoPub = photoPub;
+//    }
 
     public List<commentaires> getCommPub() {
         return CommPub;
@@ -87,11 +99,11 @@ public class pubblications {
     public pubblications() {
     }
 
-    public pubblications(String titlePub, String descPub, String datePub, String photoPub, List<commentaires> CommPub) {
+    public pubblications(String titlePub, String descPub, String datePub, List<commentaires> CommPub) {
         this.titlePub = titlePub;
         this.descPub = descPub;
         this.datePub = datePub;
-        this.photoPub = photoPub;
+        
         this.CommPub = CommPub;
     }
 

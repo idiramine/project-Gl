@@ -1,0 +1,36 @@
+/*ul li{
+     position:relative;float:left;
+     width:100px;height:100px;padding:10px;list-style:none;
+}
+permet de créer deux lignes
+ul li:nth-child(4n){clear:left;} 
+          
+ul li p{
+     display:block;overflow:hidden;
+     width:100px;height:100px;
+     margin-top:0px;margin-left:0px;
+     border:0px solid rgba(0,0,0,0.7);
+     transition-property:width,height,margin,z-index,border;
+     transition-duration:0.4s;
+}
+
+ul li p:hover{
+     position:absolute;
+     width:600px;height:400px;
+     margin-top:-400px;margin-left:+000px;
+     z-index:200;
+     border:6px solid rgba(0,0,0,0.7);
+}
+          
+ul li p img{
+     position:absolute;
+     width:100px;height:100px;z-index:20;
+     transition-property:width,height,z-index;
+     transition-duration:0.7s;
+}
+          
+ul li p:hover img{
+     width:600px;height:400px;
+     z-index:200;
+}
+*/

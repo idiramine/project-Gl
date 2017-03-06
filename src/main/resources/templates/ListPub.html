@@ -68,10 +68,11 @@ and open the template in the editor.
                        <th>Title</th>
                        <th>Description</th>
                        <th>Date</th>
-                       <th>Image</th>
+                      
 
                          <th>Modifier</th>
-                       <th>Supprimer</th>
+                       <th>Supprimer</th> 
+                       <th>Photos</th>
                    </tr>
                    </thead>
 
@@ -83,14 +84,15 @@ and open the template in the editor.
 
                        <td th:text="${pubb.descPub}"></td>
                        <td th:text="${pubb.datePub}"></td>
-                       <td>
-                           <img class="img-circle" th:src="@{getPhoto(id=${pubb.idPub})}" width="100" height="100" />
-                       </td>
+                      
+                           <!--img class="img-circle" th:src="@{getPhoto(idPub=${pubb.idPub})}" width="100" height="100" /-->
+                      
 
-                       <!--td><img th:src="System.getProperty("user.home")+"/aapa/"+"${pubb.photoPub}" /></td-->
 
-                       <td><a th:href="@{'/GPA/edit?id='+ ${pubb.idPub}}"><button type="submit" class="btn btn-success">Modif</button></a></td >
+                       <td><a th:href="@{'/GPA/edit?idpub='+ ${pubb.idPub}}"><button type="submit" class="btn btn-success">Modif</button></a></td >
                        <td><a onclick="return confirm('Etes vous sur de vouloir supprimer cet élément ?')" th:href="@{'/GPA/DeletePub?id='+ ${pubb.idPub}}"><button type="submit" class="btn btn-danger">Suppr</button></a></td>
+
+                       <td><a th:href="@{'/GPA/editPhotos?idpub='+ ${pubb.idPub}}"><button type="submit" class="btn btn-success">Photos</button></a></td >
                    </tr>
                    </tbody>
                </table>
@@ -110,7 +112,6 @@ and open the template in the editor.
                                                 <input class="form-control" type="hidden" th:field="*{idPub}" /><br />
                  <label>Titre: </label>         <input class="form-control" type="text" th:field="*{titlePub}" /><br />
                  <label>Description: </label>   <input class="form-control" type="text" th:field="*{descPub}" width="200" height="100"/><br />
-                 <label>Photo: </label>         <input type="file" th:name="picture"/><br />
                  <label>Date: </label>          <input class="form-control" type="date" th:field="*{datePub}" />
 
                     <button type="submit">Ajouter</button>

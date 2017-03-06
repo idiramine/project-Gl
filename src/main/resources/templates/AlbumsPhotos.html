@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/css/style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        
+         <div class="panel-heading">
+             <h2 th:text="${pubbli.idPub}">PUBLICATIONS
+            </h2>
+         </div>
+
+           <!-- Table -->
+           <table class="table table-hover" >
+                   <thead>
+                   <tr>
+                       <th>Phooto's name</th>
+                       <th>Phooto</th>
+                      
+                       <th></th>
+                       <th>Supprimer</th>
+                       <th></th>
+                       
+                   </tr>
+                   </thead>
+
+                   <tbody>
+                       
+                   <tr th:each="a : ${ album }">
+
+                       <td th:hidden="${a.idPhoto}"></td>
+                       <td th:text="${a.namePhoto}"></td>
+                       <td>
+                        <img id ="image" th:src="@{getPhoto(pbb=${pubbli.idPub} pht={album.idPhoto})}" width="200"/>
+                     </td>
+                       <!--td><a onclick="return confirm('Etes vous sur de vouloir supprimer cet élément ?')" th:href="@{'/GPA/DeletePub?id='+ ${pubb.idPub}}"><button type="submit" class="btn btn-danger">Suppr</button></a></td-->
+                   </tr>   
+    </tbody></table>
+
+        <div>La on va ajouter les albums de photo</div>
+     <form th:object="${AlbumPhoto}" th:action="@{/GPA/addAlbum}"  method="POST" enctype="multipart/form-data" >
+
+        <label>Choisissez Votre Photo: </label><input type="file" th:name="album"/><br />
+         <button type="submit">Ajouter</button>
+     </form>
+    </body>
+</html>

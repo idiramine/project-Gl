@@ -6,6 +6,8 @@
 package AAPA.Controllers;
 
 
+import AAPA.Entity.AlbumPhoto;
+import AAPA.Entity.Repo.AlbumPhotoRepo;
 import AAPA.Entity.Repo.commentairesRepo;
 import AAPA.Entity.Repo.coordRepo;
 import AAPA.Entity.Repo.infosRepo;
@@ -19,6 +21,7 @@ import java.awt.PageAttributes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -83,16 +86,29 @@ public class GPAController {
 
     @Inject
    infosRepo infRep;
+    
+     @Inject
+   AlbumPhotoRepo albumRep;
 
     @Inject
     questionsRepo questRep;
 
   @Value("${dir.images}")
     private String imageDir;
+  
+  @RequestMapping("/")
+
+    public String Login(Model m1, @Valid pubblications publication) {
+        
+
+            m1.addAttribute("publication", publication);
+            return "Login";
+
+        }
+  
 
   @RequestMapping("/GPA")
 
-       
     public String home(Model m1, @Valid questions questionn) {
         m1.addAttribute("qu", questRep.findAll());
        
@@ -106,30 +122,36 @@ public class GPAController {
        
         return "GestQuestions";
     }
+    
+     @RequestMapping("/GPA/addPhoto")
+    public String SavePhoto (Model m2, @Valid AlbumPhoto album ,@RequestParam("idPub") long idPub , @RequestParam(name ="picture")MultipartFile file) throws Exception{
+
+            pubblications pubbb = pubRep.findOne(idPub);
+            m2.addAttribute("album", album);
+            
+            album.setNamePhoto(file.getOriginalFilename());
+            album.setIdPubAlb(pubbb.getIdPub());
+            albumRep.save(album);
+           file.transferTo(new File(imageDir +"article "+ pubbb.getIdPub()+"_"+album.getIdPhoto()));
+
+         return "redirect:/GPA/ListPub";
+    }
+    
 
     @RequestMapping("/GPA/addPub")
-    public String SavePub (Model m2, @Valid pubblications publication , @RequestParam(name ="picture")MultipartFile file) throws Exception{
+    public String SavePub (Model m2, @Valid pubblications publication) throws Exception{
 
             m2.addAttribute("publication", publication);
-
+            
             pubRep.save(publication);
-
-            publication.setPhotoPub(file.getOriginalFilename());
-            file.transferTo(new File(imageDir +"article "+ publication.getIdPub()));
-
-
+            
          return "redirect:/GPA/ListPub";
     }
 
    @RequestMapping("/GPA/ListPub")
     public String home(Model m3, @Valid pubblications pub) {
         m3.addAttribute("pubAff", pubRep.findAll());
-       
-       /* Date actuelle = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dat = dateFormat.format(actuelle);
-        pub.setDatePub(dat);*/
-       
+             
         return "ListPub";
 
     }
@@ -147,13 +169,35 @@ public String deleteQuest(@RequestParam("id") long idQuestion) {
 
 
   @RequestMapping(value = "/GPA/edit", method = RequestMethod.GET)
-        public String edit(@RequestParam("id") long idPub, Model model) {
+        public String edit(@RequestParam("idpub") long idPub ,Model model) {
+            
+          //  AlbumPhoto album = albumRep.findOne(idPhoto);
             pubblications pubbli = pubRep.findOne(idPub);
+            
             model.addAttribute("pubbli",pubbli);
 
              return "UpdatePub";
+        }
+        
+@RequestMapping(value = "/GPA/editPhotos", method = RequestMethod.GET)
+        public String editPhotos(@Valid pubblications p,@RequestParam("idpub") long idPub, Model model) {
+           
+            pubblications pub = pubRep.findOne(idPub);
+            
+            model.addAttribute("pu", pub);
+            model.addAttribute("allPhotos",albumRep.findOneByIdPubAlb(idPub));
+        
+            return "UpdatePhotos";
 
         }
+            @RequestMapping("/GPA/updatePhotos")
+    public String updatePub (Model m3, @Valid AlbumPhoto a ) throws IOException{
+
+            m3.addAttribute("publication", a);
+            albumRep.save(a);
+         return "redirect:/GPA/editPhotos";
+    }
+
 
 
          @RequestMapping(value = "/GPA/Reponse", method = RequestMethod.GET)
@@ -170,8 +214,6 @@ String str3="idiramine13@gmail.com";
           SendMailUsingAuthentication sma = new SendMailUsingAuthentication();
       try {
           sma.postMail(recipients, str1, str2, str3);
-
-
       } catch (MessagingException ex) {
           Logger.getLogger(GPAController.class.getName()).log(Level.SEVERE, null, ex);
       }
@@ -193,12 +235,9 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
 
 
         @RequestMapping("/GPA/update")
-    public String updatePub (Model m3, @Valid pubblications p , @RequestParam(name ="pic")MultipartFile file) throws IOException{
+    public String updatePub (Model m3, @Valid pubblications p ) throws IOException{
 
             m3.addAttribute("publication", p);
-
-            p.setPhotoPub(file.getOriginalFilename());
-            file.transferTo(new File(imageDir +"article "+ p.getIdPub()));
             pubRep.save(p);
          return "redirect:/GPA/ListPub";
     }
@@ -212,15 +251,35 @@ public String reppQuestt (Model m4, @Valid questions q ) throws IOException{
         return "redirect:/GPA/ListPub";
 
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @RequestMapping(value="/GPA/DeletePhoto")
+    public String deletePhoto(@RequestParam("idPh") long idPhoto, @RequestParam("idP") long idPub) {
+
+        AlbumPhoto photo = albumRep.findOne(idPhoto);
+              
+        new File(imageDir+"article "+idPub+"_"+idPhoto).delete();
+    	
+        	
+        albumRep.delete(idPhoto);
+
+        return "redirect:/GPA/ListPub";
+
+    }
+    
+    
+    
+    
        @RequestMapping(value="/GPA/getPhoto", produces=MediaType.IMAGE_JPEG_VALUE)
         @ResponseBody
-        public byte[] getPhoto(long id) throws Exception {
+        public byte[] getPhoto(long idPub, long idPhoto) throws IOException {
 
-
-             File f = new File(imageDir+"article "+id);
+           
+             File f = new File(imageDir+"article "+idPub+"_"+idPhoto);
+              if( f.length()!=0 )
              return IOUtils.toByteArray(new FileInputStream(f));
-
+              else 
+                  return null;
         }
 
           @RequestMapping("/GPA/GestCoor")
