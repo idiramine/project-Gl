@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head xmlns:th="http://thymeleaf.org">
+        <title>GESTIONS DES FICHIERS</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body class="container">
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">AAPA</a>
+      </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav">
+         <li><a th:href="@{/GPA/}">Accueil<span class="sr-only">(current)</span></a></li>
+          <li><a th:href="@{/GPA/ListPub}">Gestion Page d'Accueil</a></li>
+            <li class="active"><a th:href="@{/gestionfiles}">Gestion Interne</a></li>
+              <li><a th:href="@{/GPA/}">Gestion Reseau Social</a></li> 
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <ul class="nav nav-tabs">
+  <li role="presentation"><a th:href="@{/gestionfiles}">Gestion Des Dossiers</a></li>
+  <li role="presentation"><a th:href="@{/Seedonations}">Gestion Des Dons</a></li>
+  <li role="presentation"><a th:href="@{/gestionstock}">Gestion Du Stock</a></li>
+  <li role="presentation" class="active"><a th:href="@{/gestioncomptes}">Gestion Des Comptes</a></li>
+
+</ul> 
+     
+    
+            
+        <div class="panel panel-default">
+            <div class="panel-heading">Comptes</div>
+      <TABLE  class="table table-hover" > 
+          <thead>
+           <TR> 
+              <TH> Login </TH> 
+              <TH> Password</TH> 
+              <TH> Nom </TH> 
+              <TH> Prénom </TH> 
+              <TH> Roles </TH> 
+              <TH> Email </TH> 
+              <TH> Modif </TH> 
+              <TH> Supp </TH> 
+          </TR> 
+          </thead>
+          <tbody>
+          <TR th:each="f : ${users}"  th:inline="text"> 
+              <form  th:object="${user}" th:action="@{'/modifyCompte?id=' + ${f.idUser}}" method="post">
+                <input type="hidden" th:field="*{idUser}" value="[[${f.idUser}]]"  />
+              <TD> [[${f.login}]]
+               <input style="width:140px" type="text" th:field="*{login}" value="[[${f.login}]]"  /></TD> 
+              <TD> <!--[[${f.password}]]-->***********
+              <input style="width:140px" type="password" th:field="*{password}" value="[[${f.password}]]"  /></TD> 
+              <TD> [[${f.firstName}]]
+              <input style="width:140px" type="text" th:field="*{firstName}" value="[[${f.firstName}]]"  /></TD> 
+              <TD> [[${f.lastName}]]
+              <input style="width:140px" type="text" th:field="*{lastName}" value="[[${f.lastName}]]"  /></TD> 
+              <TD> [[${f.role}]]
+                            <SELECT class="form-control" th:field="*{role}">
+                            <OPTION value="Gestionaire"> Gestionaire  </OPTION>
+                            <OPTION value="Adherent"> Adherent   </OPTION>
+                            </SELECT>
+              </TD> 
+              <TD> [[${f.email}]]
+              <input style="width:140px" type="text" th:field="*{email}" value="[[${f.email}]]"  /></TD> 
+              <TD> <input class="btn btn-success" type="submit" value="Modif"/> </TD> 
+              <TD> <a th:href="@{'/deleteuser?id=' + ${f.idUser}}">
+                <input type="submit" class="btn btn-danger" value="Supp" onclick="return confirm('Supprimer ce dossier supprimera le benificiare ainsi que le conjoit et les enfants, \n\  cela supprimera aussi les dons concernant ce dossier.\n\ \n\ êtes vous sur de vouloir continuer?')"/>
+                    </a> </TD> 
+                    </form>
+          </TR>
+          </tbody>
+        </TABLE>
+            </div>
+            
+            
+            
+            
+        <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"> Ajouter un nouveau Compte</h3>
+  </div>
+  <div class="panel-body">
+        <form enctype="multipart/form-data"  th:object="${user}" th:action="@{/adduser}" method="post">
+            <div class="form-group" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">Informations Du Compte</div></div>
+        <div> LOGIN     
+        <input class="form-control" 
+        type="text" 
+        th:field="*{login}"    />    
+        </div> 
+        <div> PASSWORD     
+            <input class="form-control" 
+                   type="password" 
+                   th:field="*{password}" />    
+        </div>
+        <div> NOM       
+            <input class="form-control" 
+                   type="text" 
+                   th:field="*{firstName}" />      
+        </div>
+        <div> PRENOM       
+            <input class="form-control" 
+                   type="text" 
+                   th:field="*{lastName}" />      
+        </div>
+        <div> EMAIL       
+            <input class="form-control" 
+                   type="text" 
+                   th:field="*{email}" />      
+        </div>
+        <div> ROLES  
+            
+            <FORM class="form-control">
+                            <SELECT class="form-control" th:field="*{role}">
+                            <OPTION value="Gestionaire"> Gestionaire  </OPTION>
+                            <OPTION value="Adherent"> Adherent   </OPTION>
+                            </SELECT>
+                        </FORM>
+        </div>
+                <input type="submit" value="Ajouter" class="btn btn-success" /> 
+        
+        
+       
+            </div>
+       </form> 
+      </div>
+
+  </div>
+    </body>
+</html>
+

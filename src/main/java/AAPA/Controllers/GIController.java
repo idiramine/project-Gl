@@ -19,6 +19,8 @@ import AAPA.Entity.Repo.ChildrensRepo;
 import AAPA.Entity.Repo.CompagnonRepo;
 import AAPA.Entity.Repo.DonationsRepo;
 import AAPA.Entity.Repo.FilesRepo;
+import AAPA.Entity.Repo.UserRepo;
+import AAPA.Entity.User;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class GIController {
 @Inject ChildrensRepo chs;
 @Inject DonationsRepo ds;
 @Inject ArticlesRepo as;
+@Inject UserRepo us;
 @Inject AlarmRepo als;
     
     /*******gestion des dossiers*******/
@@ -136,9 +139,13 @@ public class GIController {
     public String modifyFile(@PathVariable("idFile") long idFile, 
             Files file) {
         Files oldfile = fs.findOne(idFile);
+        if(!file.getAdress().equals(""))
         oldfile.setAdress(file.getAdress());
+        if(!file.getFileDate().equals(""))
         oldfile.setFileDate(file.getFileDate());
+        if(!file.getObservation().equals(""))
         oldfile.setObservation(file.getObservation());
+        if(!file.getFileName().equals(""))
         oldfile.setFileName(file.getFileName());
         fs.save(file);
         return "redirect:/seefiles/"+idFile;
@@ -148,7 +155,6 @@ public class GIController {
     /*******gestion des beneficiares*******/
     @RequestMapping("/deleteBeneficiary")
     public String deleteBeneficiary( @RequestParam("id") long idFile) {
-        System.out.println("1245");
         Files file = fs.findOne(idFile);
         if(file.getBeneficiary()!=null&&file.getCompagnon()!=null){
         Long id=file.getBeneficiary().getIdBeneficiary();
@@ -186,11 +192,17 @@ public class GIController {
             Beneficiary benef) {
         Files file = fs.findOne(idFile);
         Beneficiary oldbenef = bs.findOne(file.getBeneficiary().getIdBeneficiary());
+        if(!benef.getBeneficiaryDateOfBirth().equals(""))
         oldbenef.setBeneficiaryDateOfBirth(benef.getBeneficiaryDateOfBirth());
+        if(!benef.getBeneficiaryFirstName().equals(""))
         oldbenef.setBeneficiaryFirstName(benef.getBeneficiaryFirstName());
+        if(!benef.getBeneficiaryName().equals(""))
         oldbenef.setBeneficiaryName(benef.getBeneficiaryName());
+        if(!benef.getBeneficiaryPlaceOfBirth().equals(""))
         oldbenef.setBeneficiaryPlaceOfBirth(benef.getBeneficiaryPlaceOfBirth());
+        if(!benef.getObservation().equals(""))
         oldbenef.setObservation(benef.getObservation());
+        if(!benef.getBeneficiarySituation().equals(""))
         oldbenef.setBeneficiarySituation(benef.getBeneficiarySituation());
         bs.save(oldbenef);
         fs.save(file);
@@ -235,10 +247,15 @@ public class GIController {
         Files file = fs.findOne(idFile);
         if(file.getCompagnon()!=null){
         Compagnon oldcomp = cs.findOne(file.getCompagnon().getIdCompagnon());
+        if(!comp.getCompagnonDateOfBirth().equals(""))
         oldcomp.setCompagnonDateOfBirth(comp.getCompagnonDateOfBirth());
+        if(!comp.getCompagnonFirstName().equals(""))
         oldcomp.setCompagnonFirstName(comp.getCompagnonFirstName());
+        if(!comp.getCompagnonName().equals(""))
         oldcomp.setCompagnonName(comp.getCompagnonName());
+        if(!comp.getCompagnonPlaceOfBirth().equals(""))
         oldcomp.setCompagnonPlaceOfBirth(comp.getCompagnonPlaceOfBirth());
+        if(!comp.getObservation().equals(""))
         oldcomp.setObservation(comp.getObservation());
         cs.save(oldcomp);
         fs.save(file);
@@ -484,18 +501,72 @@ public class GIController {
     }
     
     @RequestMapping("/modifyAlarm")
-    public String modifyAlarm( @RequestParam("id") long idFile, Alarm alarm) {
-        Files file = fs.findOne(idFile);
-        Alarm oldalarm = als.findOne(alarm.getidAlarm());
+    public String modifyAlarm( @RequestParam("id") long idFile,  @RequestParam("idal") long idAlarm, Alarm alarm) {
+       // Files file = fs.findOne(idFile); 
+        Alarm oldalarm = als.findOne(idAlarm);
+        if(!alarm.getdateDebut().equals(""))
         oldalarm.setdateDebut(alarm.getdateDebut());
+        if(!alarm.getperiodicite().equals(""))
         oldalarm.setperiodicite(alarm.getperiodicite());
+        if(!alarm.gettitle().equals(""))
         oldalarm.settitle(alarm.gettitle());
-        oldalarm.settraite(alarm.gettraite());
+       // if(!alarm.getdateDebut().equals(""))
+       // oldalarm.settraite(alarm.gettraite());
+        if(!alarm.getdateDernierTraitement().equals(""))
         oldalarm.setdateDernierTraitement(alarm.getdateDernierTraitement());
         als.save(oldalarm);
-        fs.save(file);
+       // fs.save(file);
         return "redirect:/seefiles/"+idFile;
     }
     /*************************************/
+    
+    /************ gestion des comptes ************/
+   @RequestMapping("/gestioncomptes")
+    public String gestioncomptes(  Model m) {
+       
+       List <User> users= us.findAll();
+       m.addAttribute("users",users);
+       m.addAttribute("user",new User());
+        
+        return "Comptes";
+    }
+    
+    @RequestMapping("/deleteuser")
+    public String deleteUser( @RequestParam("id") long idUser) {
+        //User user = us.findOne(idUser);
+            us.delete(idUser);
+       
+        return "redirect:/gestioncomptes";
+           
+    }
+    
+    @RequestMapping("/modifyCompte")
+    public String modifyCompte( @RequestParam("id") long idUser,
+            User user) {
+        User olduser = us.findOne(idUser);
+        if(!user.getEmail().equals(""))
+            olduser.setEmail(user.getEmail());
+        if(!user.getLastName().equals(""))
+            olduser.setLastName(user.getLastName());
+        if(!user.getFirstName().equals(""))
+            olduser.setFirstName(user.getFirstName());
+        if(!user.getPassword().equals(""))
+            olduser.setPassword(user.getPassword());
+        if(!user.getLogin().equals(""))
+            olduser.setLogin(user.getLogin());
+        if(!user.getRole().equals(""))
+            olduser.setRole(user.getRole());
+        us.save(olduser);
+        return "redirect:/gestioncomptes";
+    }
+    
+    
+    @RequestMapping("/adduser") 
+    public String addUser(User user) {
+        us.save(user);
+        return "redirect:/gestioncomptes";
+    }
+    /****************************************************/
+    
     
 }
